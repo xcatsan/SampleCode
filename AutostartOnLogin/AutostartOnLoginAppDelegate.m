@@ -12,53 +12,86 @@
 
 @synthesize window;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	// Insert code here to initialize your application 
+- (BOOL)isEnableLoginItem
+{
+	BOOL is_enable = NO;
+	CFURLRef url = (CFURLRef)[NSURL fileURLWithPath: [[NSBundle mainBundle] bundlePath]];
+	LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
 	
-	[_checkbox setIntValue:0];
+	UInt32 seedValue;
+	NSArray  *loginItemsArray = (NSArray *)LSSharedFileListCopySnapshot(loginItems, &seedValue);
+	for (id item in loginItemsArray)
+	{		
+		LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)item;
+		if (LSSharedFileListItemResolve(itemRef, 0, (CFURLRef*) &url, NULL) == noErr)
+		{
+			if ([[(NSURL *)url path] hasPrefix:[[NSBundle mainBundle] bundlePath]]) {
+				is_enable = YES;
+				break;
+			}
+		}
+	}
+	[loginItemsArray release];
+	CFRelease(loginItems);
+	
+	return is_enable;
 }
 
-- (void)enableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(CFURLRef)thePath
+- (void)enableLoginItem
 {
-	LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(theLoginItemsRefs, kLSSharedFileListItemLast, NULL, NULL, thePath, NULL, NULL);		
+	CFURLRef url = (CFURLRef)[NSURL fileURLWithPath: [[NSBundle mainBundle] bundlePath]];
+
+	LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+	LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);		
 	if (item)
 	{
 		CFRelease(item);
 	}
+	CFRelease(loginItems);
 }
 
-- (void)disableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(CFURLRef)thePath
+- (void)disableLoginItem
 {
+	CFURLRef url = (CFURLRef)[NSURL fileURLWithPath: [[NSBundle mainBundle] bundlePath]];
+	LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
 	UInt32 seedValue;
-	NSArray  *loginItemsArray = (NSArray *)LSSharedFileListCopySnapshot(theLoginItemsRefs, &seedValue);
+	NSArray  *loginItemsArray = (NSArray *)LSSharedFileListCopySnapshot(loginItems, &seedValue);
 	for (id item in loginItemsArray)
 	{		
 		LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)item;
-		if (LSSharedFileListItemResolve(itemRef, 0, (CFURLRef*) &thePath, NULL) == noErr)
+		if (LSSharedFileListItemResolve(itemRef, 0, (CFURLRef*) &url, NULL) == noErr)
 		{
-			if ([[(NSURL *)thePath path] hasPrefix:[[NSBundle mainBundle] bundlePath]])
-				LSSharedFileListItemRemove(theLoginItemsRefs, itemRef);
+			if ([[(NSURL *)url path] hasPrefix:[[NSBundle mainBundle] bundlePath]]) {
+				LSSharedFileListItemRemove(loginItems, itemRef);
+				break;
+			}
 		}
 	}
 	[loginItemsArray release];
+	CFRelease(loginItems);
 }
 
 
 -(IBAction)check:(id)sender
 {
-	NSString* applicationPath = [[NSBundle mainBundle] bundlePath];
-	CFURLRef url = (CFURLRef)[NSURL fileURLWithPath: applicationPath];
-
-	LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
 
 	if ([sender intValue] == 1) {
 		// add
-		[self enableLoginItemWithLoginItemsReference:loginItems ForPath:url];
+		[self enableLoginItem];
 	} else {
 		// remove
-		[self disableLoginItemWithLoginItemsReference:loginItems ForPath:url];
+		[self disableLoginItem];
 	}
-	CFRelease(loginItems);
 }
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+	// Insert code here to initialize your application 
+
+	if ([self isEnableLoginItem]) {
+		[_checkbox setIntValue:1];
+	} else {
+		[_checkbox setIntValue:0];
+	}
+}
+
 
 @end
