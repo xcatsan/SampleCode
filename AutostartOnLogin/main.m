@@ -1,7 +1,9 @@
 //
 //  main.m
-//  Helloworld2
+//  AutostartOnLogin
 //
+//  Created by 湖 on 09/11/11.
+//  Copyright 2009 Hiroshi Hashiguchi. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
