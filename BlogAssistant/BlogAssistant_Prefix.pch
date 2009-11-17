@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'BlogAssistant' target in the 'BlogAssistant' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
