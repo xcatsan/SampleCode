@@ -197,7 +197,7 @@
 	Homepage* homepage = [NSEntityDescription insertNewObjectForEntityForName:@"Homepage"
 													 inManagedObjectContext:[self managedObjectContext]];
 	homepage.title = [NSString stringWithFormat:@"TEST TITLE:%@", [[NSDate date] description]];
-	homepage.imageName = @"TEST IMAGE";
+	homepage.imageName = @"sample2.png";
 	homepage.url = @"http://xcatsan.com/";
 	homepage.createdDate = [NSDate date];
 	homepage.modifiedDate = [NSDate date];
