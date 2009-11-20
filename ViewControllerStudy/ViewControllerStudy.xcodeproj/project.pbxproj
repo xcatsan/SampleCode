@@ -12,6 +12,7 @@
 		4C38826410B4F26D005BF907 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C38826310B4F26D005BF907 /* ViewController.m */; };
 		4C38826910B4F49F005BF907 /* ImageFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C38826810B4F49F005BF907 /* ImageFile.m */; };
 		4C38826B10B4F5B6005BF907 /* sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C38826A10B4F5B6005BF907 /* sample.jpg */; };
+		4C9F8A8210B60E8A00A0C436 /* SampleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F8A8110B60E8A00A0C436 /* SampleView.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -33,6 +34,7 @@
 		4C38826710B4F49F005BF907 /* ImageFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFile.h; sourceTree = "<group>"; };
 		4C38826810B4F49F005BF907 /* ImageFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFile.m; sourceTree = "<group>"; };
 		4C38826A10B4F5B6005BF907 /* sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample.jpg; sourceTree = "<group>"; };
+		4C9F8A8110B60E8A00A0C436 /* SampleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SampleView.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* ViewControllerStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViewControllerStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -116,6 +118,7 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				4C9F8A8110B60E8A00A0C436 /* SampleView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				4C38826B10B4F5B6005BF907 /* sample.jpg in Resources */,
+				4C9F8A8210B60E8A00A0C436 /* SampleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

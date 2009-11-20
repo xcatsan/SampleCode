@@ -15,6 +15,7 @@
 	imageFile.name = @"sample.jpg";
 	imageFile.date = [NSDate date];
 	
+	viewController = [[NSViewController alloc] initWithNibName:@"SampleView" bundle:nil];
 	[viewController setRepresentedObject:imageFile];
 	[view addSubview:[viewController view]];
 }
