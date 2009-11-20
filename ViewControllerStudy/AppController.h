@@ -9,7 +9,7 @@
 @interface AppController : NSObject {
 
 	IBOutlet NSView* view;
-	NSViewController* viewController;
+	NSMutableArray* viewControllers;
 	
 	ImageFile* imageFile;
 }
