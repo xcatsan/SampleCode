@@ -5,6 +5,7 @@
 
 #import "TableViewController.h"
 #import "Homepage.h"
+#import "CustomCell.h"
 
 @implementation TableViewController
 @synthesize list;
@@ -25,6 +26,18 @@
 		}
 	}
 	return self;
+}
+
+#pragma mark -
+#pragma mark NSTableViewDelegate
+- (NSCell *)tableView:(NSTableView *)tableView dataCellForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+	NSLog(@"tableView: %@", tableView);
+	NSLog(@"  tableColumn: %@", tableColumn);
+	NSLog(@"  row: %d", row);
+
+	CustomCell* cell = [[[CustomCell alloc] init] autorelease];
+	return cell;
 }
 
 @end
