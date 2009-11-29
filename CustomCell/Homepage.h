@@ -6,7 +6,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface Homepage : NSObject {
+@interface Homepage : NSObject <NSCopying> {
 
 	NSString* title;
 	NSString* image;

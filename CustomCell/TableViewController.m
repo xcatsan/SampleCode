@@ -27,9 +27,18 @@
 	}
 	return self;
 }
+#pragma mark -
+-(void)awakeFromNib
+{
+	CustomCell* cell = [[[CustomCell alloc] init] autorelease];
+	[cell setEditable:NO];
+	[tableColumn setDataCell:cell];
+	NSLog(@"cell=%@", cell);
+}
 
 #pragma mark -
 #pragma mark NSTableViewDelegate
+/*
 - (NSCell *)tableView:(NSTableView *)tableView dataCellForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
 	NSLog(@"tableView: %@", tableView);
@@ -39,5 +48,6 @@
 	CustomCell* cell = [[[CustomCell alloc] init] autorelease];
 	return cell;
 }
+*/
 
 @end
