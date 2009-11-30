@@ -16,8 +16,9 @@
 	
 	homepage.image = [image copyWithZone:zone];
 	homepage.title = [title copyWithZone:zone];
-
 	return homepage;
+
+//	return [self retain];
 }
 
 @end
