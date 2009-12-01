@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		4C2000C410C4C7EF004D0BC7 /* ImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2000C310C4C7EF004D0BC7 /* ImageTransformer.m */; };
 		4C75391110BDEFF000976B60 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C75391010BDEFF000976B60 /* CustomCell.m */; };
 		4CBA981510BCA374005620DE /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA981410BCA374005620DE /* TableViewController.m */; };
 		4CBA981810BCA3B9005620DE /* Homepage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA981710BCA3B9005620DE /* Homepage.m */; };
@@ -26,6 +27,8 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* CustomCell_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell_Prefix.pch; sourceTree = "<group>"; };
+		4C2000C210C4C7EF004D0BC7 /* ImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTransformer.h; sourceTree = "<group>"; };
+		4C2000C310C4C7EF004D0BC7 /* ImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTransformer.m; sourceTree = "<group>"; };
 		4C75390F10BDEFF000976B60 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		4C75391010BDEFF000976B60 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		4CBA981310BCA374005620DE /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
@@ -58,6 +61,8 @@
 				4CBA981710BCA3B9005620DE /* Homepage.m */,
 				4C75390F10BDEFF000976B60 /* CustomCell.h */,
 				4C75391010BDEFF000976B60 /* CustomCell.m */,
+				4C2000C210C4C7EF004D0BC7 /* ImageTransformer.h */,
+				4C2000C310C4C7EF004D0BC7 /* ImageTransformer.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				4CBA981510BCA374005620DE /* TableViewController.m in Sources */,
 				4CBA981810BCA3B9005620DE /* Homepage.m in Sources */,
 				4C75391110BDEFF000976B60 /* CustomCell.m in Sources */,
+				4C2000C410C4C7EF004D0BC7 /* ImageTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
