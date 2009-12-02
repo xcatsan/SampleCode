@@ -8,11 +8,11 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="57"/>
-			<integer value="505"/>
+			<integer value="510"/>
 			<integer value="456"/>
 			<integer value="486"/>
-			<integer value="510"/>
+			<integer value="513"/>
+			<integer value="57"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1348,6 +1348,7 @@
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
+				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="97779383">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -1366,7 +1367,7 @@
 										<object class="NSTableView" id="531179176">
 											<reference key="NSNextResponder" ref="97816360"/>
 											<int key="NSvFlags">256</int>
-											<string key="NSFrameSize">{465, 295}</string>
+											<string key="NSFrameSize">{465, 294}</string>
 											<reference key="NSSuperview" ref="97816360"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="_NSCornerView" key="NSCornerView">
@@ -1419,7 +1420,7 @@
 											<bool key="NSAllowsTypeSelect">YES</bool>
 										</object>
 									</object>
-									<string key="NSFrame">{{1, 0}, {465, 295}}</string>
+									<string key="NSFrame">{{1, 1}, {465, 294}}</string>
 									<reference key="NSSuperview" ref="301917706"/>
 									<reference key="NSNextKeyView" ref="531179176"/>
 									<reference key="NSDocView" ref="531179176"/>
@@ -1429,7 +1430,7 @@
 								<object class="NSScroller" id="80055205">
 									<reference key="NSNextResponder" ref="301917706"/>
 									<int key="NSvFlags">256</int>
-									<string key="NSFrame">{{466, 0}, {15, 295}}</string>
+									<string key="NSFrame">{{466, 1}, {15, 294}}</string>
 									<reference key="NSSuperview" ref="301917706"/>
 									<reference key="NSTarget" ref="301917706"/>
 									<string key="NSAction">_doScroller:</string>
@@ -1529,6 +1530,7 @@
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
+				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="465355160">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -2218,22 +2220,6 @@
 					<int key="connectionID">504</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">itemPrototype</string>
-						<reference key="source" ref="139020805"/>
-						<reference key="destination" ref="843712056"/>
-					</object>
-					<int key="connectionID">511</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">view</string>
-						<reference key="source" ref="843712056"/>
-						<reference key="destination" ref="247966306"/>
-					</object>
-					<int key="connectionID">512</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">content: arrangedObjects</string>
 						<reference key="source" ref="139020805"/>
@@ -2284,6 +2270,22 @@
 						</object>
 					</object>
 					<int key="connectionID">539</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">itemPrototype</string>
+						<reference key="source" ref="139020805"/>
+						<reference key="destination" ref="843712056"/>
+					</object>
+					<int key="connectionID">548</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">view</string>
+						<reference key="source" ref="843712056"/>
+						<reference key="destination" ref="247966306"/>
+					</object>
+					<int key="connectionID">549</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3629,6 +3631,8 @@
 					<string>506.IBPluginDependency</string>
 					<string>507.IBPluginDependency</string>
 					<string>508.IBPluginDependency</string>
+					<string>509.CustomClassName</string>
+					<string>510.CustomClassName</string>
 					<string>510.IBEditorWindowLastContentRect</string>
 					<string>513.IBEditorWindowLastContentRect</string>
 					<string>513.IBPluginDependency</string>
@@ -3875,7 +3879,7 @@
 					<string>{{116, 512}, {480, 359}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{116, 512}, {480, 359}}</string>
-					<integer value="1" id="5"/>
+					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3889,11 +3893,13 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>CollectionViewItem</string>
+					<string>ItemView</string>
 					<string>{{84, 763}, {312, 114}}</string>
-					<string>{{211, 527}, {424, 309}}</string>
+					<string>{{202, 405}, {424, 309}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{211, 527}, {424, 309}}</string>
-					<reference ref="5"/>
+					<string>{{202, 405}, {424, 309}}</string>
+					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3954,11 +3960,27 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">539</int>
+			<int key="maxID">549</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">CollectionViewItem</string>
+					<string key="superclassName">NSCollectionViewItem</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">CollectionViewItem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ItemView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">ItemView.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">TableViewController</string>
 					<string key="superclassName">NSObject</string>
