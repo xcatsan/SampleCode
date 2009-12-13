@@ -202,14 +202,22 @@
 		return;
 	}
 
-	for (int i=0; i < 10; i++) {
+	for (int i=0; i < 100; i++) {
 		Homepage* homepage = [NSEntityDescription insertNewObjectForEntityForName:@"Homepage" inManagedObjectContext:moc];
 		homepage.title = [NSString stringWithFormat:@"TEST-%d", i];
 		homepage.image = @"sample.jpg";
-		[moc save:&error];
-		if (error) {
-			NSLog(@"INSERT ERROR: %@", error);
+		if (!(i % 10000)) {
+			[moc save:&error];
+			if (error) {
+				NSLog(@"INSERT ERROR: %@", error);
+			} else {
+				NSLog(@"COMMIT AT: %d", i);
+			}
 		}
+	}
+	[moc save:&error];
+	if (error) {
+		NSLog(@"INSERT ERROR: %@", error);
 	}
 }
 

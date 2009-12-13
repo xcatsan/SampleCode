@@ -12,6 +12,7 @@
 		4CF414AB10CC7DF0006A9168 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF414AA10CC7DF0006A9168 /* CustomCell.m */; };
 		4CF414AF10CC7E0E006A9168 /* ImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF414AE10CC7E0E006A9168 /* ImageTransformer.m */; };
 		4CF4152C10CCDD7C006A9168 /* sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4CF4152B10CCDD7C006A9168 /* sample.jpg */; };
+		4CF415C610D1BE6B006A9168 /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF415C510D1BE6B006A9168 /* CustomTableView.m */; };
 		770B37ED0679A11B001EADE2 /* CustomCellWithCoredata_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* CustomCellWithCoredata_DataModel.xcdatamodel */; };
 		77C8280E06725ACE000B614F /* CustomCellWithCoredata_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* CustomCellWithCoredata_AppDelegate.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -34,6 +35,8 @@
 		4CF414AD10CC7E0E006A9168 /* ImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTransformer.h; sourceTree = "<group>"; };
 		4CF414AE10CC7E0E006A9168 /* ImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTransformer.m; sourceTree = "<group>"; };
 		4CF4152B10CCDD7C006A9168 /* sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample.jpg; sourceTree = "<group>"; };
+		4CF415C410D1BE6B006A9168 /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
+		4CF415C510D1BE6B006A9168 /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
 		770B37EC0679A11B001EADE2 /* CustomCellWithCoredata_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = CustomCellWithCoredata_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		77C8280B06725ACE000B614F /* CustomCellWithCoredata_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellWithCoredata_AppDelegate.h; sourceTree = "<group>"; };
@@ -61,6 +64,8 @@
 				4CF414AA10CC7DF0006A9168 /* CustomCell.m */,
 				77C8280B06725ACE000B614F /* CustomCellWithCoredata_AppDelegate.h */,
 				77C8280C06725ACE000B614F /* CustomCellWithCoredata_AppDelegate.m */,
+				4CF415C410D1BE6B006A9168 /* CustomTableView.h */,
+				4CF415C510D1BE6B006A9168 /* CustomTableView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				4CF4148110CC782A006A9168 /* Homepage.m in Sources */,
 				4CF414AB10CC7DF0006A9168 /* CustomCell.m in Sources */,
 				4CF414AF10CC7E0E006A9168 /* ImageTransformer.m in Sources */,
+				4CF415C610D1BE6B006A9168 /* CustomTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
