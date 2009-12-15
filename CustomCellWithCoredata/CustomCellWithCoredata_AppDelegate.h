@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class CustomCell;
+@class CustomTableView;
 @interface CustomCellWithCoredata_AppDelegate : NSObject 
 {
     IBOutlet NSWindow *window;
@@ -17,8 +17,7 @@
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
 	
-	IBOutlet NSTableColumn* table_column;
-	IBOutlet NSArrayController* array_controller;
+	IBOutlet NSManagedObjectContext *ui_moc;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;

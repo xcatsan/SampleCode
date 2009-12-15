@@ -8,9 +8,10 @@
 
 #import "CustomTableView.h"
 
+#import "CustomCell.h"
 
 @implementation CustomTableView
-@synthesize trackingArea;
+@synthesize trackingArea, cell;
 #pragma mark -
 #pragma mark Tracking Utility
 - (void)updateTrackingArea
@@ -32,6 +33,8 @@
 #pragma mark Initialization and Deallocation
 - (void)awakeFromNib
 {
+	[[[self tableColumns] objectAtIndex:0] setDataCell:cell];	
+	// #TODO: Must call after data loading (or repeatly ?)
 	[self updateTrackingArea];
 }
 
@@ -54,41 +57,89 @@
 	return NSPointInRect(p, [self visibleRect]);
 }
 
+- (CustomCell*)cellOnMouse:(NSEvent*)theEvent
+{
+	NSPoint mp = [self convertPointFromBase:[theEvent locationInWindow]];
+	NSInteger column = [self columnAtPoint:mp];
+	NSInteger row = [self rowAtPoint:mp];
+	
+	CustomCell* targetCell = (CustomCell*)[self preparedCellAtColumn:column row:row];
+	return targetCell;
+}
+
+- (void)redrawCell:(NSEvent*)theEvent
+{
+	NSPoint mp = [self convertPointFromBase:[theEvent locationInWindow]];
+	NSInteger column = [self columnAtPoint:mp];
+	NSInteger row = [self rowAtPoint:mp];
+
+	if (column != previousColumn || row != previousRow) {
+		if (previousColumn >= 0 && previousRow >= 0) {
+
+			[self setNeedsDisplayInRect:
+			 [self frameOfCellAtColumn:previousColumn row:previousRow]];
+		}
+	}
+	if (column >= 0 && row >= 0) {
+		[self setNeedsDisplayInRect:[self frameOfCellAtColumn:column row:row]];
+	}
+	previousColumn = column;
+	previousRow = row;
+}
+
 - (void)mouseDown:(NSEvent*)theEvent
 {
 	if ([self isVisible:theEvent]) {
-		NSLog(@"mouseDown:");
+		CustomCell* targetCell = [self cellOnMouse:theEvent];
+		[targetCell handleMouseDown:theEvent];
+		[self redrawCell:theEvent];
 	}
-//	[super mouseDown:theEvent];
+	[super mouseDown:theEvent];
 }
+
 
 - (void)mouseUp:(NSEvent*)theEvent
 {
+	// #TODO: didn't be called
+	NSLog(@"UP");
 	if ([self isVisible:theEvent]) {
-		NSLog(@"mouseUp:");
+		CustomCell* targetCell = [self cellOnMouse:theEvent];
+		[targetCell handleMouseUp:theEvent];
+		[self redrawCell:theEvent];
 	}
 	[super mouseUp:theEvent];
 }
+
 - (void)mouseEntered:(NSEvent *)theEvent
 {
 	if ([self isVisible:theEvent]) {
-		NSLog(@"mouseEntered:");
+		CustomCell* targetCell = [self cellOnMouse:theEvent];
+		[targetCell handleMouseEntered:theEvent];
+		[self redrawCell:theEvent];
 	}
 	[super mouseEntered:theEvent];
 }
 - (void)mouseExited:(NSEvent *)theEvent
 {
-	if ([self isVisible:theEvent]) {
-		NSLog(@"mouseExited:");
-	}
+	[cell handleMouseExited:theEvent];
 	[super mouseExited:theEvent];
+	[self setNeedsDisplay:YES];
 }
 - (void)mouseMoved:(NSEvent *)theEvent
 {
 	if ([self isVisible:theEvent]) {
-		NSLog(@"mouseMoved:");
+		CustomCell* targetCell = [self cellOnMouse:theEvent];
+		[targetCell handleMouseMoved:theEvent];
+		[self redrawCell:theEvent];
 	}
 	[super mouseMoved:theEvent];
+}
+
+#pragma mark -
+#pragma mark Overidden methods
+- (void)highlightSelectionInClipRect:(NSRect)clipRect
+{
+	// do nothing
 }
 
 - (void)viewDidEndLiveResize

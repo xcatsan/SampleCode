@@ -6,7 +6,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface Homepage : NSManagedObject <NSCopying> {
+@interface Homepage : NSManagedObject {
 
 	NSString* title;
 	NSString* image;

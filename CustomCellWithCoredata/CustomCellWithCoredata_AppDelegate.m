@@ -9,6 +9,7 @@
 #import "CustomCellWithCoredata_AppDelegate.h"
 #import "Homepage.h"
 #import "CustomCell.h"
+#import "CustomTableView.h"
 
 @implementation CustomCellWithCoredata_AppDelegate
 
@@ -223,16 +224,9 @@
 
 - (void)awakeFromNib
 {
-	NSManagedObjectContext* moc = [self managedObjectContext];
-
 	[self createTestRecord];
+	[ui_moc setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
 	
-	[array_controller setManagedObjectContext:moc];
-
-	CustomCell* cell = [[[CustomCell alloc] init] autorelease];
-	[cell setEditable:NO];
-	cell.managedObjectContext = moc;
-	[table_column setDataCell:cell];
 }
 
 

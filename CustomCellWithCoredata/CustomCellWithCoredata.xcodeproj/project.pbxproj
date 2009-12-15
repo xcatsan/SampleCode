@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F7446990DB6B7EA00F9684A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7446970DB6B7EA00F9684A /* MainMenu.xib */; };
+		4C43E0EE10D7000500CFE24E /* CustomCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C43E0ED10D7000500CFE24E /* CustomCellButton.m */; };
 		4CF4148110CC782A006A9168 /* Homepage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF4148010CC782A006A9168 /* Homepage.m */; };
 		4CF414AB10CC7DF0006A9168 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF414AA10CC7DF0006A9168 /* CustomCell.m */; };
 		4CF414AF10CC7E0E006A9168 /* ImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF414AE10CC7E0E006A9168 /* ImageTransformer.m */; };
@@ -28,6 +29,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2F7446980DB6B7EA00F9684A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* CustomCellWithCoredata_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellWithCoredata_Prefix.pch; sourceTree = "<group>"; };
+		4C43E0EC10D7000500CFE24E /* CustomCellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellButton.h; sourceTree = "<group>"; };
+		4C43E0ED10D7000500CFE24E /* CustomCellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellButton.m; sourceTree = "<group>"; };
 		4CF4147F10CC782A006A9168 /* Homepage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Homepage.h; sourceTree = "<group>"; };
 		4CF4148010CC782A006A9168 /* Homepage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Homepage.m; sourceTree = "<group>"; };
 		4CF414A910CC7DF0006A9168 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
@@ -66,6 +69,8 @@
 				77C8280C06725ACE000B614F /* CustomCellWithCoredata_AppDelegate.m */,
 				4CF415C410D1BE6B006A9168 /* CustomTableView.h */,
 				4CF415C510D1BE6B006A9168 /* CustomTableView.m */,
+				4C43E0EC10D7000500CFE24E /* CustomCellButton.h */,
+				4C43E0ED10D7000500CFE24E /* CustomCellButton.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 				4CF414AB10CC7DF0006A9168 /* CustomCell.m in Sources */,
 				4CF414AF10CC7E0E006A9168 /* ImageTransformer.m in Sources */,
 				4CF415C610D1BE6B006A9168 /* CustomTableView.m in Sources */,
+				4C43E0EE10D7000500CFE24E /* CustomCellButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

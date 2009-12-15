@@ -3,15 +3,45 @@
 //  CustomCell
 //
 #import "CustomCell.h"
+#import "CustomCellButton.h"
 #import "Homepage.h"
 
 @implementation CustomCell
-@synthesize managedObjectContext;
+@synthesize managedObjectContext, handlingValue;
 
-- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
+- (id)init
+{
+	self = [super init];
+	if (self) {
+		NSLog(@"cell was initialized");
+	}
+	return self;
+}
+
+- (void) dealloc
+{
+	[super dealloc];
+}
+
+
+- (Homepage*)homepage
 {
 	NSManagedObjectID* moid = (NSManagedObjectID*)[self objectValue];
 	Homepage* homepage = (Homepage*)[self.managedObjectContext objectWithID:moid];
+	return homepage;
+}
+
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
+{
+	if (handlingValue == [self objectValue]) {
+		[[NSColor lightGrayColor] set];
+		NSRectFill(cellFrame);
+	} else {
+		[[NSColor whiteColor] set];
+		NSRectFill(cellFrame);
+	}
+
+	Homepage* homepage = [self homepage];
 
 	NSImage* image = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:homepage.image]] autorelease];
 	
@@ -27,12 +57,15 @@
 	NSDictionary* attrs = [NSDictionary dictionary];
 	[homepage.title drawAtPoint:p2 withAttributes:attrs];
 	[controlView unlockFocus];
+
+//	[button drawWithFrame:cellFrame inView:controlView];
+	
 }
 
 - (id)copyWithZone:(NSZone *)zone
 {
 //	NSLog(@"self=%@, copyWithZone:%@", self, zone);
-	CustomCell* cell = (CustomCell*)[super copyWithZone:zone];
+	CustomCell* cell = [[[self class] allocWithZone:zone] init];
 	return cell;
 }
 
@@ -46,23 +79,50 @@
 #pragma mark -
 #pragma mark Overriedden methods
 /*
-- (BOOL)startTrackingAt:(NSPoint)startPoint inView:(NSView *)controlView
+- (NSRect)expansionFrameWithFrame:(NSRect)cellFrame inView:(NSView *)view
 {
-	NSLog(@"startTrackingAt:%@ inView:%@", NSStringFromPoint(startPoint), controlView);
-//	return [super startTrackingAt:startPoint inView:controlView];
-	return YES;
+	NSRect frame = cellFrame;
+	frame.origin.x += 20;
+	frame.origin.y -= 20;
+	frame.size.width = 440;
+	frame.size.height = 100;
+	return frame;
 }
 
-- (BOOL)continueTracking:(NSPoint)lastPoint at:(NSPoint)currentPoint inView:(NSView *)controlView
+- (NSString*)description
 {
-	NSLog(@"continueTracking:%@ at:%@ inView:%@", NSStringFromPoint(lastPoint), NSStringFromPoint(currentPoint), controlView);
-//	return [super continueTracking:lastPoint at:currentPoint inView:controlView];
-	return YES;
-}
-- (void)stopTracking:(NSPoint)lastPoint at:(NSPoint)stopPoint inView:(NSView *)controlView mouseIsUp:(BOOL)flag
-{
-	NSLog(@"sopTracking:%@lastPoint at:%@ inView:%@ mouseIsUp:%d", NSStringFromPoint(lastPoint), NSStringFromPoint(stopPoint), controlView, flag);
+	return [[self homepage] description];
 }
  */
+
+#pragma mark -
+#pragma mark Handle event
+-(void)handleMouseDown:(NSEvent*)theEvent
+{
+	NSLog(@"mouseDown: %@", self);
+}
+
+-(void)handleMouseUp:(NSEvent*)theEvent
+{
+	NSLog(@"mouseUp");
+}
+
+-(void)handleMouseEntered:(NSEvent*)theEvent
+{
+//	NSLog(@"mouseEntered");
+	self.handlingValue = [self objectValue];
+}
+
+-(void)handleMouseExited:(NSEvent*)theEvent
+{
+//	NSLog(@"mouseExited");
+	self.handlingValue = nil;
+}
+
+-(void)handleMouseMoved:(NSEvent*)theEvent
+{
+	self.handlingValue = [self objectValue];
+}
+
 @end
 

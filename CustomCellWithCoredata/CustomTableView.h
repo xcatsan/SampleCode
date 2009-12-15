@@ -8,12 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 
-
+@class CustomCell;
 @interface CustomTableView : NSTableView {
 
 	NSTrackingArea* trackingArea;
-
+	CustomCell* cell;
+	
+	NSInteger previousColumn;
+	NSInteger previousRow;
+	
 }
 @property (retain) NSTrackingArea* trackingArea;
+@property (assign) IBOutlet CustomCell* cell;
 
 @end

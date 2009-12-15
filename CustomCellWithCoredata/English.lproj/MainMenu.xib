@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="421"/>
 			<integer value="29"/>
+			<integer value="424"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -172,8 +172,7 @@
 									<reference key="NSSuperview" ref="565859056"/>
 									<reference key="NSTarget" ref="565859056"/>
 									<string key="NSAction">_doScroller:</string>
-									<double key="NSCurValue">3.700000e+01</double>
-									<double key="NSPercent">1.947368e-01</double>
+									<double key="NSPercent">9.965157e-01</double>
 								</object>
 								<object class="NSScroller" id="783974201">
 									<reference key="NSNextResponder" ref="565859056"/>
@@ -1325,6 +1324,17 @@
 				<bool key="NSFilterRestrictsInsertion">YES</bool>
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
+			<object class="NSCustomObject" id="960991658">
+				<string key="NSClassName">CustomCell</string>
+			</object>
+			<object class="NSManagedObjectContext" id="451591323">
+				<float key="NSFetchTimestamp">-1.000000e+00</float>
+				<bool key="NSRetainsRegisteredObjects">NO</bool>
+				<bool key="NSPropagatesDeleted">YES</bool>
+				<object class="NSMergePolicy" key="NSMergePolicy">
+					<int key="NSTypeCode">0</int>
+				</object>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -1859,19 +1869,35 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">table_column</string>
-						<reference key="source" ref="612578685"/>
-						<reference key="destination" ref="453890039"/>
+						<string key="label">managedObjectContext</string>
+						<reference key="source" ref="599430553"/>
+						<reference key="destination" ref="451591323"/>
 					</object>
-					<int key="connectionID">441</int>
+					<int key="connectionID">454</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">array_controller</string>
-						<reference key="source" ref="612578685"/>
-						<reference key="destination" ref="599430553"/>
+						<string key="label">managedObjectContext</string>
+						<reference key="source" ref="960991658"/>
+						<reference key="destination" ref="451591323"/>
 					</object>
-					<int key="connectionID">450</int>
+					<int key="connectionID">455</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cell</string>
+						<reference key="source" ref="334794764"/>
+						<reference key="destination" ref="960991658"/>
+					</object>
+					<int key="connectionID">456</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">ui_moc</string>
+						<reference key="source" ref="612578685"/>
+						<reference key="destination" ref="451591323"/>
+					</object>
+					<int key="connectionID">457</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2822,6 +2848,16 @@
 						<reference key="object" ref="976170575"/>
 						<reference key="parent" ref="453890039"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">452</int>
+						<reference key="object" ref="960991658"/>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">453</int>
+						<reference key="object" ref="451591323"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -3027,6 +3063,8 @@
 					<string>426.IBPluginDependency</string>
 					<string>429.IBPluginDependency</string>
 					<string>430.IBPluginDependency</string>
+					<string>452.IBPluginDependency</string>
+					<string>453.IBPluginDependency</string>
 					<string>56.IBPluginDependency</string>
 					<string>56.ImportedFromIB2</string>
 					<string>57.IBEditorWindowLastContentRect</string>
@@ -3152,9 +3190,9 @@
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
-					<string>{{38, 414}, {480, 424}}</string>
+					<string>{{18, 369}, {480, 424}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{38, 414}, {480, 424}}</string>
+					<string>{{18, 369}, {480, 424}}</string>
 					<reference ref="5"/>
 					<reference ref="5"/>
 					<reference ref="5"/>
@@ -3260,6 +3298,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
 					<string>{{85, 781}, {245, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3311,11 +3351,32 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">450</int>
+			<int key="maxID">457</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">CustomCell</string>
+					<string key="superclassName">NSCell</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>handlingValue</string>
+							<string>managedObjectContext</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>NSManagedObjectContext</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">CustomCell.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">CustomCellWithCoredata_AppDelegate</string>
 					<string key="superclassName">NSObject</string>
@@ -3327,14 +3388,12 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>array_controller</string>
-							<string>table_column</string>
+							<string>ui_moc</string>
 							<string>window</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>NSArrayController</string>
-							<string>NSTableColumn</string>
+							<string>NSManagedObjectContext</string>
 							<string>NSWindow</string>
 						</object>
 					</object>
@@ -3354,6 +3413,10 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">CustomTableView</string>
 					<string key="superclassName">NSTableView</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">cell</string>
+						<string key="NS.object.0">CustomCell</string>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">CustomTableView.h</string>
