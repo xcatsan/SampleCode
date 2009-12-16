@@ -67,6 +67,16 @@
 	return targetCell;
 }
 
+- (NSRect)cellFrameOnMouse:(NSEvent*)theEvent
+{
+	NSPoint mp = [self convertPointFromBase:[theEvent locationInWindow]];
+	NSInteger column = [self columnAtPoint:mp];
+	NSInteger row = [self rowAtPoint:mp];
+
+	return 	 [self frameOfCellAtColumn:column row:row];
+}
+
+
 - (void)redrawCell:(NSEvent*)theEvent
 {
 	NSPoint mp = [self convertPointFromBase:[theEvent locationInWindow]];
@@ -87,52 +97,56 @@
 	previousRow = row;
 }
 
+
 - (void)mouseDown:(NSEvent*)theEvent
 {
 	if ([self isVisible:theEvent]) {
 		CustomCell* targetCell = [self cellOnMouse:theEvent];
-		[targetCell handleMouseDown:theEvent];
+		[targetCell handleMouseDown:theEvent
+							  frame:[self cellFrameOnMouse:theEvent]
+							 inView:self];
 		[self redrawCell:theEvent];
 	}
-	[super mouseDown:theEvent];
 }
 
 
 - (void)mouseUp:(NSEvent*)theEvent
 {
-	// #TODO: didn't be called
-	NSLog(@"UP");
 	if ([self isVisible:theEvent]) {
 		CustomCell* targetCell = [self cellOnMouse:theEvent];
-		[targetCell handleMouseUp:theEvent];
+		[targetCell handleMouseUp:theEvent
+							frame:[self cellFrameOnMouse:theEvent]
+						   inView:self];
 		[self redrawCell:theEvent];
 	}
-	[super mouseUp:theEvent];
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent
 {
 	if ([self isVisible:theEvent]) {
 		CustomCell* targetCell = [self cellOnMouse:theEvent];
-		[targetCell handleMouseEntered:theEvent];
+		[targetCell handleMouseEntered:theEvent
+								 frame:[self cellFrameOnMouse:theEvent]
+								inView:self];
 		[self redrawCell:theEvent];
 	}
-	[super mouseEntered:theEvent];
 }
+
 - (void)mouseExited:(NSEvent *)theEvent
 {
 	[cell handleMouseExited:theEvent];
-	[super mouseExited:theEvent];
 	[self setNeedsDisplay:YES];
 }
+
 - (void)mouseMoved:(NSEvent *)theEvent
 {
 	if ([self isVisible:theEvent]) {
 		CustomCell* targetCell = [self cellOnMouse:theEvent];
-		[targetCell handleMouseMoved:theEvent];
+		[targetCell handleMouseMoved:theEvent
+							   frame:[self cellFrameOnMouse:theEvent]
+							  inView:self];
 		[self redrawCell:theEvent];
 	}
-	[super mouseMoved:theEvent];
 }
 
 #pragma mark -
