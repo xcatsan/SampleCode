@@ -20,7 +20,7 @@
 		[self removeTrackingArea:self.trackingArea];
 	}
 	self.trackingArea = [[[NSTrackingArea alloc]
-						  initWithRect:[self visibleRect]
+						  initWithRect:[self frame]
 						  options:(NSTrackingMouseEnteredAndExited |
 								   NSTrackingMouseMoved |
 								   NSTrackingActiveAlways )
