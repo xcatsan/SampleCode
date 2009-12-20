@@ -19,6 +19,8 @@
 	
 }
 @property (retain) NSTrackingArea* trackingArea;
-@property (assign) IBOutlet CustomCell* cell;
+
+- (void)setup;
+- (void)setDataCell:(CustomCell*)cell;
 
 @end

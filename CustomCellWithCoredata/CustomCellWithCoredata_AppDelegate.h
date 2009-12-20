@@ -16,8 +16,9 @@
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
-	
-	IBOutlet NSManagedObjectContext *ui_moc;
+
+	IBOutlet NSArrayController *arrayController;
+	IBOutlet CustomTableView* tableView;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;

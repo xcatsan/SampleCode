@@ -11,7 +11,7 @@
 #import "CustomCell.h"
 
 @implementation CustomTableView
-@synthesize trackingArea, cell;
+@synthesize trackingArea;
 #pragma mark -
 #pragma mark Tracking Utility
 - (void)updateTrackingArea
@@ -20,7 +20,7 @@
 		[self removeTrackingArea:self.trackingArea];
 	}
 	self.trackingArea = [[[NSTrackingArea alloc]
-						  initWithRect:[self frame]
+						  initWithRect:[self visibleRect]
 						  options:(NSTrackingMouseEnteredAndExited |
 								   NSTrackingMouseMoved |
 								   NSTrackingActiveAlways )
@@ -28,15 +28,22 @@
 						  userInfo:nil] autorelease];
 	[self addTrackingArea:self.trackingArea];
 }
+- (void)setDataCell:(CustomCell*)aCell
+{
+	[aCell retain];
+	[cell release];
+	cell = aCell;
+	[[[self tableColumns] objectAtIndex:0] setDataCell:cell];
+}
+
+- (void)setup
+{
+	[self updateTrackingArea];
+}
+
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
-- (void)awakeFromNib
-{
-	[[[self tableColumns] objectAtIndex:0] setDataCell:cell];	
-	// #TODO: Must call after data loading (or repeatly ?)
-	[self updateTrackingArea];
-}
 
 - (void) dealloc
 {
@@ -44,6 +51,7 @@
 		[self removeTrackingArea:self.trackingArea];
 	}
 	self.trackingArea = nil;
+	[cell release];
 	[super dealloc];
 }
 

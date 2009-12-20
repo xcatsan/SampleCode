@@ -13,57 +13,48 @@
 
 @implementation CustomCellButton
 
-- (id)initWithTitle:(NSString*)aTitle at:(NSPoint)aPoint;
+#pragma mark -
+#pragma mark Initialization and Deallocation
+
+- (id)initWithFrame:(NSRect)rect
 {
-	self = [super init];
+	self = [super initWithFrame:rect];
 	
 	if (self) {
-		NSDictionary* attrs = [NSDictionary dictionary];
-		frame.size = [aTitle sizeWithAttributes:attrs];
-		frame.size.width += TITLE_MARGIN_X*2;
-		frame.size.height += TITLE_MARGIN_Y*2;
-		frame.origin = aPoint;
-		self.title = [aTitle retain];
+		self.canHandleEvent = YES;
 	}
 	
 	return self;
 }
+
 - (void) dealloc
 {
 	[title release];
 	[super dealloc];
 }
 
-
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
- state:(NSInteger)buttonState
+				state:(NSInteger)state value:(id)value
 {
 	NSColor* frameColor;
 	NSColor* backgroundColor;
-	NSColor* fontColor;
 
-	switch (buttonState) {
+	switch (state) {
 		case CONTROL_STATE_ON:
 			frameColor = [NSColor lightGrayColor];
 			backgroundColor = [NSColor redColor];
-			fontColor = [NSColor whiteColor];
 			break;
 		case CONTROL_STATE_OVER:
 			frameColor = [NSColor grayColor];
 			backgroundColor = [NSColor lightGrayColor];
-			fontColor = [NSColor blackColor];
 			break;
 		default:
 			frameColor = [NSColor lightGrayColor];
 			backgroundColor = [NSColor whiteColor];
-			fontColor = [NSColor grayColor];
 			break;
 	}
 
-	[controlView lockFocus];
-	
-
-	NSRect rect = frame;
+	NSRect rect = self.frame;
 	rect.origin.x += cellFrame.origin.x;
 	rect.origin.y += cellFrame.origin.y;
 
@@ -76,16 +67,30 @@
 	[path setLineWidth:2.0];
 	[path stroke];
 	
-	NSPoint p2 = rect.origin;
-	p2.x += TITLE_MARGIN_X;
-	p2.y += TITLE_MARGIN_Y;
-	NSDictionary* attrs = [NSDictionary dictionary];
-	[fontColor set];
-	[title drawAtPoint:p2 withAttributes:attrs];
+	NSSize textSize = [self.title sizeWithAttributes:self.textAttributes];
+	CGFloat margin_x = (self.frame.size.width - textSize.width)/2.0;
+	CGFloat margin_y = (self.frame.size.height - textSize.height)/2.0;
 
-	[controlView unlockFocus];
+	NSRect textRect = self.frame;
+
+	textRect.origin.x += margin_x + cellFrame.origin.x;
+	textRect.origin.y += margin_y + cellFrame.origin.y;
+	textRect.size.width -= margin_x*2;
+	textRect.size.height -= margin_y*2;
+	
+	[title drawInRect:textRect withAttributes:self.textAttributes];
 }
 
+
+#pragma mark -
+#pragma mark Original methods
+
+- (void)adjustSize
+{
+	frame.size = [self.title sizeWithAttributes:self.textAttributes];
+	frame.size.width += TITLE_MARGIN_X*2;
+	frame.size.height += TITLE_MARGIN_Y*2;
+}
 
 
 @end

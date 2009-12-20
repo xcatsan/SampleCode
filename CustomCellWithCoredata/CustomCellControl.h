@@ -18,20 +18,26 @@ enum CONTROL_STATE
 
 	NSRect frame;
 	NSString* title;
-	
+	NSString* keyPath;
+	NSDictionary* textAttributes;
+	BOOL canHandleEvent;
+
 	id target;
 	SEL action;
 }
+@property (assign) NSRect frame;
 @property (retain) NSString* title;
+@property (retain) NSString* keyPath;
+@property (retain) NSDictionary* textAttributes;
+@property (assign) BOOL canHandleEvent;
 @property (retain) id target;
 @property (assign) SEL action;
 
-- (id)initWithOrigin:(NSPoint)origin;
+- (id)initWithFrame:(NSRect)rect;
 
-- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView state:(NSInteger)buttonState;
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView state:(NSInteger)state value:(id)value;
 
 - (BOOL)hitTestAtPoint:(NSPoint)testPoint inFrame:(NSRect)cellFrame;
-
 
 
 @end

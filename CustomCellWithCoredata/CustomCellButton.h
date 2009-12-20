@@ -12,6 +12,5 @@
 @interface CustomCellButton : CustomCellControl {
 
 }
-- (id)initWithTitle:(NSString*)aTitle at:(NSPoint)aPoint;
-
+- (void)adjustSize;
 @end

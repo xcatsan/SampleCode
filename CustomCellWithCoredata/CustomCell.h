@@ -4,23 +4,22 @@
 //
 #import <Cocoa/Cocoa.h>
 
-@class CustomCellButton;
 @class CustomCellControl;
 @interface CustomCell : NSCell {
 
 	NSManagedObjectContext* managedObjectContext;
 
 	id handlingValue;
-	CustomCellButton* handlingControl;
+	CustomCellControl* handlingControl;
 	NSEvent* handlingEvent;
 	BOOL isMouseDown;
 
 	NSMutableArray* controls;
 }
 
-@property (retain) IBOutlet NSManagedObjectContext* managedObjectContext;
+@property (retain) NSManagedObjectContext* managedObjectContext;
 @property (retain) id handlingValue;
-@property (retain) CustomCellButton* handlingControl;
+@property (retain) CustomCellControl* handlingControl;
 @property (retain) NSEvent* handlingEvent;
 
 -(void)addControl:(CustomCellControl*)control;

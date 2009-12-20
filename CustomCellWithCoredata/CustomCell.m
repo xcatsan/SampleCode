@@ -4,8 +4,6 @@
 //
 #import "CustomCell.h"
 #import "CustomCellControl.h"
-#import "CustomCellButton.h"
-#import "Homepage.h"
 
 @implementation CustomCell
 @synthesize managedObjectContext, handlingValue, handlingEvent, handlingControl;
@@ -15,13 +13,6 @@
 	self = [super init];
 	if (self) {
 		controls = [[NSMutableArray alloc] init];
-		CustomCellButton* cellButton;
-		cellButton = [[CustomCellButton alloc] initWithTitle:@"BUTTON-A"
-					  at:NSMakePoint(200, 10)];
-		[controls addObject:cellButton];
-		cellButton = [[CustomCellButton alloc] initWithTitle:@"BUTTON-B"
-					  at:NSMakePoint(300, 10)];
-		[controls addObject:cellButton];
 	}
 	return self;
 }
@@ -40,42 +31,17 @@
 	[controls addObject:control];
 }
 
-
-- (Homepage*)homepage
+-(id)dataObject
 {
 	NSManagedObjectID* moid = (NSManagedObjectID*)[self objectValue];
-	Homepage* homepage = (Homepage*)[self.managedObjectContext objectWithID:moid];
-	return homepage;
+	NSManagedObject* mo = [self.managedObjectContext objectWithID:moid];
+	return mo;
 }
 
+
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
-{
-	/*
-	if (handlingValue == [self objectValue]) {
-		[[NSColor lightGrayColor] set];
-		NSRectFill(cellFrame);
-	} else {
-		[[NSColor whiteColor] set];
-		NSRectFill(cellFrame);
-	}
-	 */
-	
-	Homepage* homepage = [self homepage];
-
-	NSImage* image = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:homepage.image]] autorelease];
-	
+{	
 	[controlView lockFocus];
-	NSPoint p1 = cellFrame.origin;
-	p1.x += 5;
-	p1.y += 5 + [image size].height;
-	[image compositeToPoint:p1 operation:NSCompositeSourceOver];
-
-	NSPoint p2 = cellFrame.origin;
-	p2.x += 100;
-	p2.y += 20;
-	NSDictionary* attrs = [NSDictionary dictionary];
-	[homepage.title drawAtPoint:p2 withAttributes:attrs];
-	[controlView unlockFocus];
 
 	NSInteger controlState;
 	
@@ -91,8 +57,10 @@
 		}
 		[cellControl drawWithFrame:cellFrame
 				   inView:controlView
-					state:controlState];
+					state:controlState
+						 value:[self dataObject]];
 	}	
+	[controlView unlockFocus];
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -108,12 +76,13 @@
 }
 */
 
--(CustomCellButton*)controlOnMouse:(NSEvent*)theEvent frame:(NSRect)cellFrame inView:(NSView*)controlView
+-(CustomCellControl*)controlOnMouse:(NSEvent*)theEvent frame:(NSRect)cellFrame inView:(NSView*)controlView
 {
 	NSPoint mp = [controlView convertPointFromBase:[theEvent locationInWindow]];
-	for (CustomCellButton* cellButton in controls) {
-		if ([cellButton hitTestAtPoint:mp inFrame:cellFrame]) {
-			return cellButton;
+	for (CustomCellControl* cellControl in controls) {
+		if (cellControl.canHandleEvent &&
+			[cellControl hitTestAtPoint:mp inFrame:cellFrame]) {
+			return cellControl;
 		}
 	}
 	return nil;
@@ -121,9 +90,7 @@
 
 
 #pragma mark -
-#pragma mark Overriedden methods
-
-
+#pragma mark 
 
 #pragma mark -
 #pragma mark Handle event
@@ -141,6 +108,14 @@
 	self.handlingEvent = theEvent;
 	self.handlingControl = [self controlOnMouse:theEvent frame:cellFrame inView:controlView];
 	isMouseDown = NO;
+	
+	CustomCellControl* control = self.handlingControl;
+	if (control.canHandleEvent && [control.target respondsToSelector:control.action]) {
+		
+		[control.target performSelector:control.action
+		 withObject:[self dataObject]];
+	}
+	
 }
 
 -(void)handleMouseEntered:(NSEvent*)theEvent frame:(NSRect)cellFrame inView:(NSView*)controlView

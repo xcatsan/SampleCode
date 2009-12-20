@@ -11,29 +11,32 @@
 
 @implementation CustomCellControl
 
-@synthesize title, target, action;
+@synthesize frame, title, target, action, keyPath, textAttributes, canHandleEvent;
 
-- (id)initWithOrigin:(NSPoint)origin
+- (id)initWithFrame:(NSRect)rect
 {
 	self = [super init];
 	if (self) {
-		frame.origin = origin;
+		self.frame = rect;
+		self.textAttributes = [NSDictionary dictionary];
+		self.canHandleEvent = NO;
 	}
 	return self;
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
-				state:(NSInteger)buttonState
+				state:(NSInteger)state value:(id)value
 {
 	// should override this method in subclass
 }
 
 - (BOOL)hitTestAtPoint:(NSPoint)testPoint inFrame:(NSRect)cellFrame
 {
-	NSRect testRect = frame;
+	NSRect testRect = self.frame;
 	testRect.origin.x += cellFrame.origin.x;
 	testRect.origin.y += cellFrame.origin.y;
 	return NSPointInRect(testPoint, testRect);
 }
+
 
 @end

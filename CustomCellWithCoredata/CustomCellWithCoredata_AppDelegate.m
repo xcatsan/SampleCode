@@ -8,8 +8,13 @@
 
 #import "CustomCellWithCoredata_AppDelegate.h"
 #import "Homepage.h"
+
 #import "CustomCell.h"
 #import "CustomTableView.h"
+#import "CustomCellButton.h"
+#import "CustomCellImage.h"
+#import "CustomCellLabel.h"
+
 
 @implementation CustomCellWithCoredata_AppDelegate
 
@@ -222,11 +227,50 @@
 	}
 }
 
+- (void)click:(id)sender
+{
+	NSLog(@"click: %@", sender);
+}
+
 - (void)awakeFromNib
 {
 	[self createTestRecord];
-	[ui_moc setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
 	
+	[arrayController setManagedObjectContext:[self managedObjectContext]];
+
+	CustomCell* cell = [[[CustomCell alloc] init] autorelease];
+	cell.managedObjectContext = [self managedObjectContext];
+
+	CustomCellButton* cellButton;
+	cellButton = [[[CustomCellButton alloc]
+				   initWithFrame:NSMakeRect(200,10,100,40)] autorelease];
+	cellButton.title = @"BUTTON-A";
+	cellButton.target = self;
+	cellButton.action = @selector(click:);
+	[cellButton adjustSize];
+	[cell addControl:cellButton];
+
+	cellButton = [[[CustomCellButton alloc]
+				   initWithFrame:NSMakeRect(300,10,100,40)] autorelease];
+	cellButton.title = @"BUTTON-B";
+	cellButton.target = self;
+	cellButton.action = @selector(click:);
+	[cellButton adjustSize];
+	[cell addControl:cellButton];
+	
+	CustomCellImage* cellImage = [[[CustomCellImage alloc]
+					initWithFrame:NSMakeRect(10, 10, 80, 80)] autorelease];
+	cellImage.keyPath = @"image";
+	[cell addControl:cellImage];
+	
+	CustomCellLabel* cellLabel = [[[CustomCellLabel alloc]
+					initWithFrame:NSMakeRect(100, 20, 15, 50)] autorelease];
+	cellLabel.keyPath = @"title";
+	[cell addControl:cellLabel];
+
+
+	[tableView setDataCell:cell];
+	[tableView setup];
 }
 
 
