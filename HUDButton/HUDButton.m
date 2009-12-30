@@ -69,7 +69,7 @@
 
 	[NSGraphicsContext saveGraphicsState];
 	NSShadow* shadow = [[NSShadow alloc] init];
-	[shadow setShadowOffset:NSMakeSize(1, -2)];
+	[shadow setShadowOffset:NSMakeSize(2, -2)];
 	[shadow setShadowBlurRadius:1.0];
 	[shadow setShadowColor:[[NSColor blackColor] colorWithAlphaComponent:0.5]];
 	[shadow set];
