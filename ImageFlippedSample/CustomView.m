@@ -21,28 +21,22 @@
 
 - (void)drawRect:(NSRect)rect {
 	
+	NSLog(@"self=%@", self);
+	NSLog(@"value=%@", [self valueForKey:@"self"]);
 	NSImage* image = [NSImage imageNamed:@"sample"];
 	
-	if ([image respondsToSelector:@selector(lockFocusFlipped:)]) {
-		
-		void (*lockFocusFlipped)(id, SEL, BOOL);
-		lockFocusFlipped = (void(*)(id, SEL, BOOL))[image methodForSelector:@selector(lockFocusFlipped:)];
-		lockFocusFlipped(image, @selector(methodForSelector:), YES);
-		[image drawInRect:[self bounds]
-				 fromRect:NSZeroRect
-				operation:NSCompositeSourceOver
-				 fraction:1.0];
-		[image unlockFocus];
-		
-	} else {
-		// v10.5 earlier
-		[image setFlipped:YES];
-		[image drawInRect:[self bounds]
-				 fromRect:NSZeroRect
-				operation:NSCompositeSourceOver
-				 fraction:1.0];		
-	}
-		
+	[image setFlipped:YES];
+	[image drawInRect:[self bounds]
+			 fromRect:NSZeroRect
+			operation:NSCompositeSourceOver
+			 fraction:1.0];		
+
+	[image drawInRect:[self bounds]
+			 fromRect:NSZeroRect
+			operation:NSCompositeSourceOver
+			 fraction:1.0
+	   respectFlipped:YES
+				hints:nil];
 }
 
 - (BOOL)isFlipped

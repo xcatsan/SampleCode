@@ -7,13 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AuthenticationWindowDelegate.h"
 
-@interface KeychainSample1AppDelegate : NSObject <NSApplicationDelegate> {
+@class AuthenticationWindowController;
+@interface KeychainSample1AppDelegate : NSObject <NSApplicationDelegate,AuthenticationWindowDelegate> {
     NSWindow *window;
 	
-	IBOutlet NSWindow* authenticateWindow;
-	IBOutlet NSTextField* usernameText;
-	IBOutlet NSSecureTextField* passwordText;	
+	AuthenticationWindowController* authenticationWindowController_;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -21,9 +21,5 @@
 -(IBAction)connect:(id)sender;
 -(IBAction)add:(id)sender;
 -(IBAction)get:(id)sender;
-
--(IBAction)login:(id)sender;
--(IBAction)cancel:(id)cancel;
-
 
 @end

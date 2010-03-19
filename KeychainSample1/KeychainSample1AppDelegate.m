@@ -8,6 +8,7 @@
 
 #import "KeychainSample1AppDelegate.h"
 #import "KeychainManager.h"
+#import "AuthenticationWindowController.h"
 
 #define SERVICE_NAME	@"TEST-1"
 
@@ -17,75 +18,11 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application 
-}
-
-- (void)displayAuthenticationWindowWithUsername:(NSString*)username password:(NSString*)password
-{
-	if (username) {
-		[usernameText setStringValue:username];
-	}
-	if (password) {
-		[passwordText setStringValue:password];
-	}
 	
-	[NSApp beginSheet:authenticateWindow
-	   modalForWindow:window
-		modalDelegate:self
-	   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
-		  contextInfo:nil];
+	authenticationWindowController_ = [[AuthenticationWindowController alloc] init];
+	authenticationWindowController_.delegate = (AuthenticationWindowDelegate*)self;
+	authenticationWindowController_.attachedWindow = window;
 }
-
-- (BOOL)authenticateWithUsername:(NSString*)username password:(NSString*)password
-{
-	NSLog(@"authenticateWithUsername:%@ password:%@",
-		  username, password);
-	return YES;
-}
-
--(void)didAuthenticate:(BOOL)result
-{
-	NSLog(@"didAuthenticate: %d", result);
-}
-
-
--(IBAction)login:(id)sender
-{
-	[NSApp endSheet:authenticateWindow];
-	[authenticateWindow orderOut:nil];
-	
-	NSString* username = [usernameText stringValue];
-	NSString* password = [passwordText stringValue];
-	BOOL result = [self authenticateWithUsername:username
-										password:password];
-	
-	if (result) {
-		[[NSUserDefaults standardUserDefaults] setValue:username
-												 forKey:@"username"];
-		result = [[KeychainManager sharedManager]
-				  storePasswordWithServiceName:SERVICE_NAME
-								   accountName:username
-									  password:password];
-		
-		[self didAuthenticate:YES];
-
-	} else {
-		[self displayAuthenticationWindowWithUsername:username
-											 password:password];
-	}
-}
-
--(IBAction)cancel:(id)cancel
-{
-	[NSApp endSheet:authenticateWindow];
-	[authenticateWindow orderOut:nil];
-	
-	[self didAuthenticate:NO];
-}
-
-- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-}
-
 
 -(IBAction)connect:(id)sender
 {
@@ -99,7 +36,7 @@
 								   accountName:username];
 	}
 	
-	[self displayAuthenticationWindowWithUsername:username
+	[authenticationWindowController_ displayAuthenticationWindowWithUsername:username
 										 password:password];
 	
 }
@@ -120,6 +57,22 @@
 						  getPasswordWithServiceName:@"TEST-1"
 						  accountName:@"hashiguchi"];
 	NSLog(@"password=%@", password);
+}
+
+- (BOOL)authenticateWithUsername:(NSString*)username password:(NSString*)password
+{
+	NSLog(@"authenticateWithUsername:%@ password:%@",
+		  username, password);
+	return YES;
+}
+
+-(void)didAuthenticateWithUsername:(NSString*)username result:(BOOL)result
+{
+	NSLog(@"didAuthenticate: %d", result);
+	if (result) {
+		 [[NSUserDefaults standardUserDefaults] setValue:username
+		 forKey:@"username"];
+	}		
 }
 
 @end

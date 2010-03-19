@@ -13,7 +13,6 @@
 
 -(void)awakeFromNib
 {
-	NSLog(@"test");
 }
 
 @end
