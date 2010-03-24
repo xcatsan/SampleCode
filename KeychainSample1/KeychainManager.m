@@ -57,6 +57,7 @@ static KeychainManager* _sharedManager = nil;
 		NSLog(@"ERROR:SecKeychainAddGenericPassword:%d", status);
 		return NO;
 	}
+	
 }
 
 -(NSString*)getPasswordWithServiceName:(NSString*)serviceName accountName:(NSString*)accountName

@@ -36,8 +36,7 @@
 								   accountName:username];
 	}
 	
-	[authenticationWindowController_ displayAuthenticationWindowWithUsername:username
-										 password:password];
+	[authenticationWindowController_ get];
 	
 }
 
