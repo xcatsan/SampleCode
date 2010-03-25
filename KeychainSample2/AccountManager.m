@@ -36,32 +36,65 @@ static AccountManager* _sharedManager = nil;
 #pragma mark -
 #pragma mark Store & Get a password
 
--(BOOL)storePasswordWithServiceName:(NSString*)serviceName accountName:(NSString*)accountName password:(NSString*)password
+- (BOOL)storeLoginAccount:(LoginAccount*)loginAccount
 {
 	OSStatus status;
-	
-	const char *serviceNameUTF8 = [serviceName UTF8String];
-	const char *accountNameUTF8 = [accountName UTF8String];
-	const char *passwordUTF8 = [password UTF8String];
+	SecKeychainItemRef itemRef = nil;
+	BOOL result = NO;
 
-	status = SecKeychainAddGenericPassword(NULL,
-										   strlen(serviceNameUTF8),
-										   serviceNameUTF8,
-										   strlen(accountNameUTF8),
-										   accountNameUTF8,
-										   strlen(passwordUTF8),
-										   passwordUTF8,
-										   NULL);
-	if (status == errSecSuccess) {
-		return YES;
+	const char *serviceNameUTF8 = [loginAccount.serviceName UTF8String];
+	const char *loginIdUTF8 = [loginAccount.loginId UTF8String];
+	const char *passwordUTF8 = [loginAccount.password UTF8String];
+
+	status = SecKeychainFindGenericPassword(NULL,
+											strlen(serviceNameUTF8),
+											serviceNameUTF8,
+											strlen(loginIdUTF8),
+											loginIdUTF8,
+											NULL,
+											NULL,
+											&itemRef);
+	
+	if (status == errSecItemNotFound) {
+		status = SecKeychainAddGenericPassword(NULL,
+											   strlen(serviceNameUTF8),
+											   serviceNameUTF8,
+											   strlen(loginIdUTF8),
+											   loginIdUTF8,
+											   strlen(passwordUTF8),
+											   passwordUTF8,
+											   NULL);
+		if (status == errSecSuccess) {
+			NSLog(@"created keychain item");
+			result = YES;
+		} else {
+			NSLog(@"ERROR:SecKeychainAddGenericPassword:%d", status);
+			result = NO;
+		}
+
 	} else {
-		NSLog(@"ERROR:SecKeychainAddGenericPassword:%d", status);
-		return NO;
+		status = SecKeychainItemModifyAttributesAndData(itemRef,
+														NULL,
+														strlen(passwordUTF8),
+														passwordUTF8);
+		
+		if (status == errSecSuccess) {
+			NSLog(@"updated keychain item");
+			result = YES;
+		} else {
+			NSLog(@"ERROR:SecKeychainItemModifyAttributesAndData:%d", status);
+			result = NO;
+		}
+	}
+	
+	if (itemRef) {
+		CFRelease(itemRef);
 	}
 
+	return result;
 }
 
--(BOOL)setPasswordWithLoginAccount:(LoginAccount*)loginAccount
+-(BOOL)setPasswordToLoginAccount:(LoginAccount*)loginAccount
 {
 	OSStatus status;
 	
@@ -70,7 +103,6 @@ static AccountManager* _sharedManager = nil;
 	
 	void *passwordData = nil;
 	UInt32 passwordLength;
-	SecKeychainItemRef *itemRef = nil;
 
 	status = SecKeychainFindGenericPassword(NULL,
 											strlen(serviceNameUTF8),
@@ -79,7 +111,7 @@ static AccountManager* _sharedManager = nil;
 											loginIdUTF8,
 											&passwordLength,
 											&passwordData,
-											itemRef);
+											NULL);
 
 	if (status == errSecSuccess) {
 		loginAccount.password = [NSString stringWithUTF8String:passwordData];

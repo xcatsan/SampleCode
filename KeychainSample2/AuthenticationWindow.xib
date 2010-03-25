@@ -150,18 +150,18 @@
 								<reference key="NSTextColor" ref="374301497"/>
 							</object>
 						</object>
-						<object class="NSTextField" id="915434954">
+						<object class="NSTextField" id="827487891">
 							<reference key="NSNextResponder" ref="116106408"/>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{21, 126}, {390, 17}}</string>
 							<reference key="NSSuperview" ref="116106408"/>
 							<bool key="NSEnabled">YES</bool>
-							<object class="NSTextFieldCell" key="NSCell" id="362042983">
+							<object class="NSTextFieldCell" key="NSCell" id="671367256">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">138413056</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="775432690"/>
-								<reference key="NSControlView" ref="915434954"/>
+								<reference key="NSControlView" ref="827487891"/>
 								<reference key="NSBackgroundColor" ref="467388871"/>
 								<object class="NSColor" key="NSTextColor">
 									<int key="NSColorSpace">1</int>
@@ -242,22 +242,6 @@
 			<object class="NSMutableArray" key="connectionRecords">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: self.password</string>
-						<reference key="source" ref="140836411"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="140836411"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">value: self.password</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">self.password</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">830</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">login:</string>
 						<reference key="source" ref="1021"/>
@@ -283,27 +267,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: self.loginId</string>
-						<reference key="source" ref="935058022"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="935058022"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">value: self.loginId</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">self.loginId</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">834</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: self.message</string>
-						<reference key="source" ref="915434954"/>
+						<reference key="source" ref="827487891"/>
 						<reference key="destination" ref="1021"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="915434954"/>
+							<reference key="NSSource" ref="827487891"/>
 							<reference key="NSDestination" ref="1021"/>
 							<string key="NSLabel">value: self.message</string>
 							<string key="NSBinding">value</string>
@@ -328,6 +296,46 @@
 						<reference key="destination" ref="140836411"/>
 					</object>
 					<int key="connectionID">839</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.loginId</string>
+						<reference key="source" ref="935058022"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="935058022"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">value: self.loginId</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.loginId</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
+								<boolean value="YES" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">842</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.password</string>
+						<reference key="source" ref="140836411"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="140836411"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">value: self.password</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.password</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
+								<boolean value="YES" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">843</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -378,7 +386,7 @@
 							<reference ref="1048535358"/>
 							<reference ref="112282833"/>
 							<reference ref="140836411"/>
-							<reference ref="915434954"/>
+							<reference ref="827487891"/>
 						</object>
 						<reference key="parent" ref="468327778"/>
 					</object>
@@ -482,17 +490,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">835</int>
-						<reference key="object" ref="915434954"/>
+						<reference key="object" ref="827487891"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="362042983"/>
+							<reference ref="671367256"/>
 						</object>
 						<reference key="parent" ref="116106408"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">836</int>
-						<reference key="object" ref="362042983"/>
-						<reference key="parent" ref="915434954"/>
+						<reference key="object" ref="671367256"/>
+						<reference key="parent" ref="827487891"/>
 					</object>
 				</object>
 			</object>
@@ -565,7 +573,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">839</int>
+			<int key="maxID">843</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

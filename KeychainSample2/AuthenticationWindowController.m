@@ -49,8 +49,10 @@
 	if (loginAccount.loginId) {
 		self.loginId = loginAccount.loginId;
 		if (!loginAccount.password) {
-			[[AccountManager sharedManager]
-			 setPasswordWithLoginAccount:loginAccount];
+			if ([[AccountManager sharedManager]
+				 setPasswordToLoginAccount:loginAccount]) {
+				self.password = loginAccount.password;
+			}
 		}
 	}
 	
@@ -72,6 +74,8 @@
 	if (!is_canceled_) {
 		loginAccount.loginId = self.loginId;
 		loginAccount.password = self.password;
+		
+		[[AccountManager sharedManager] storeLoginAccount:loginAccount];
 		return YES;
 
 	} else {
@@ -81,6 +85,7 @@
 
 -(IBAction)login:(id)sender
 {
+	/*
 	NSString* loginId = [loginIdTextField_ stringValue];
 	NSString* password = [passwordTextField_ stringValue];
 	
@@ -94,7 +99,18 @@
 		[window_ makeFirstResponder:passwordTextField_];
 		return;
 	}
-
+	 */
+	if (!self.loginId  || [self.loginId length] == 0) {
+		self.message = @"Username is empty";
+		[window_ makeFirstResponder:loginIdTextField_];
+		return;
+	}
+	if (!self.password || [self.password length] == 0) {
+		self.message = @"Password is empty";
+		[window_ makeFirstResponder:passwordTextField_];
+		return;
+	}
+	
 	is_canceled_ = NO;
 	[NSApp stopModal];
 }

@@ -11,6 +11,7 @@
 #import "LoginAccount.h"
 
 #define SERVICE_NAME	@"TEST-2"
+#define DEFAULT_LOGINID	@"loginId"
 
 @implementation KeychainSample2AppDelegate
 
@@ -27,15 +28,19 @@
 	LoginAccount* loginAccount = [[[LoginAccount alloc] init] autorelease];
 
 	loginAccount.loginId =
-		[[NSUserDefaults standardUserDefaults] valueForKey:@"loginId"];
+		[[NSUserDefaults standardUserDefaults] valueForKey:DEFAULT_LOGINID];
 	loginAccount.serviceName = SERVICE_NAME;
 
 	if ([authenticationWindowController_ storeLoginAccount:loginAccount]) {
 		// TODO: send request
 		NSLog(@"%@", loginAccount);
+		
+		// If the request is successful..
+		[[NSUserDefaults standardUserDefaults] setValue:loginAccount.loginId
+												 forKey:DEFAULT_LOGINID];
 	} else {
 		// cancel
-		NSLog(@"cancend");
+		NSLog(@"canceled");
 	}
 }
 

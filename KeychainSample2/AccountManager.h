@@ -14,6 +14,7 @@
 }
 
 + (AccountManager*)sharedManager;
--(BOOL)setPasswordWithLoginAccount:(LoginAccount*)loginAccount;
+- (BOOL)setPasswordToLoginAccount:(LoginAccount*)loginAccount;
+- (BOOL)storeLoginAccount:(LoginAccount*)loginAccount;
 
 @end
