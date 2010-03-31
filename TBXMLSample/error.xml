@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsp status="fail">
+    <err code="1001" msg="Invalid twitter username or password" />
+</rsp>

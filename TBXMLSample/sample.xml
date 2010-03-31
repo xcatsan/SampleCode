@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsp status="ok">
+ <statusid>1111</statusid>
+ <userid>11111</userid>
+ <mediaid>abc123</mediaid>
+ <mediaurl>http://twitpic.com/abc123</mediaurl>
+</rsp>
