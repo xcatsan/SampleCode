@@ -31,7 +31,7 @@
 
 @property (retain) NSString* message;
 
--(BOOL)storeLoginAccount:(LoginAccount*)loginAccount;
+-(BOOL)getLoginAccount:(LoginAccount*)loginAccount;
 
 -(IBAction)login:(id)sender;
 -(IBAction)cancel:(id)cancel;

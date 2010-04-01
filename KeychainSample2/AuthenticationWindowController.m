@@ -44,7 +44,7 @@
 
 #pragma mark -
 #pragma mark Public accessors
--(BOOL)storeLoginAccount:(LoginAccount*)loginAccount
+-(BOOL)getLoginAccount:(LoginAccount*)loginAccount
 {
 	if (loginAccount.loginId) {
 		self.loginId = loginAccount.loginId;
