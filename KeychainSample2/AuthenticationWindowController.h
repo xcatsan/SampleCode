@@ -33,6 +33,8 @@
 
 -(BOOL)getLoginAccount:(LoginAccount*)loginAccount;
 
+-(BOOL)deleteLoginAccount:(LoginAccount*)loginAccount;
+
 -(IBAction)login:(id)sender;
 -(IBAction)cancel:(id)cancel;
 @end

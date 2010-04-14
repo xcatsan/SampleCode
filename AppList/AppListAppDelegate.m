@@ -21,6 +21,7 @@
 	if (self != nil) {
 		self.appList = [NSMutableArray array];
 		
+		/*
 		// TEST
 		ApplicationEntry* entry;
 		
@@ -35,6 +36,7 @@
 		entry = [[[ApplicationEntry alloc] init] autorelease];
 		entry.name = @"APPLICATION-3";
 		[self.appList addObject:entry];
+		 */
 	}
 	return self;
 }
@@ -92,7 +94,7 @@
 	for (NSString* filename in filenames) {
 		ApplicationEntry* entry = [[[ApplicationEntry alloc] init] autorelease];
 		entry.path = filename;
-		entry.name = [filename lastPathComponent];
+//		entry.name = [filename lastPathComponent];
 		[arrayController_ insertObject:entry atArrangedObjectIndex:row];
 	}
 

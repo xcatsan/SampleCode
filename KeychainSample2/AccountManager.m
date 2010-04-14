@@ -125,4 +125,44 @@ static AccountManager* _sharedManager = nil;
 	}
 	
 }
+
+- (BOOL)deleteLoginAccount:(LoginAccount*)loginAccount
+{
+	OSStatus status;
+	
+	const char *serviceNameUTF8 = [loginAccount.serviceName UTF8String];
+	const char *loginIdUTF8 = [loginAccount.loginId UTF8String];
+	
+	SecKeychainItemRef itemRef = nil;
+
+	status = SecKeychainFindGenericPassword(NULL,
+											strlen(serviceNameUTF8),
+											serviceNameUTF8,
+											strlen(loginIdUTF8),
+											loginIdUTF8,
+											NULL,
+											NULL,
+											&itemRef);
+	
+	if (status == errSecSuccess) {
+		status = SecKeychainItemDelete(itemRef);
+		
+		if (status == errSecSuccess) {
+			return YES;
+		} else {
+			NSLog(@"ERROR:SecKeychainItemDelete");
+			return NO;
+		}
+		
+	} else {
+		NSLog(@"ERROR:SecKeychainFindGenericPassword:%d", status);
+		return NO;
+	}
+
+	if (itemRef) {
+		CFRelease(itemRef);
+	}
+	
+}
+
 @end

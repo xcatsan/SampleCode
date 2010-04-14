@@ -121,4 +121,9 @@
 	[NSApp stopModal];
 }
 
+-(BOOL)deleteLoginAccount:(LoginAccount*)loginAccount
+{
+	return [[AccountManager sharedManager] deleteLoginAccount:loginAccount];
+}
+
 @end

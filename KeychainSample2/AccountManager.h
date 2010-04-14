@@ -16,5 +16,5 @@
 + (AccountManager*)sharedManager;
 - (BOOL)setPasswordToLoginAccount:(LoginAccount*)loginAccount;
 - (BOOL)storeLoginAccount:(LoginAccount*)loginAccount;
-
+- (BOOL)deleteLoginAccount:(LoginAccount*)loginAccount;
 @end

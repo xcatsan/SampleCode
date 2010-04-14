@@ -120,4 +120,17 @@
 	}
 }
 
+-(IBAction)delete:(id)sender
+{
+	LoginAccount* loginAccount = [[[LoginAccount alloc] init] autorelease];
+	
+	loginAccount.loginId =
+	[[NSUserDefaults standardUserDefaults] valueForKey:DEFAULT_LOGINID];
+	loginAccount.serviceName = SERVICE_NAME;
+	
+	[authenticationWindowController_ deleteLoginAccount:loginAccount];
+	
+	NSLog(@"deleted");
+}
+
 @end

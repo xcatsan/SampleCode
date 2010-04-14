@@ -17,6 +17,7 @@
 }
 
 -(IBAction)connect:(id)sender;
+-(IBAction)delete:(id)sender;
 
 @property (assign) IBOutlet NSWindow *window;
 
