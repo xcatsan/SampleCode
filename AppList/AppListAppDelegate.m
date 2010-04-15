@@ -9,6 +9,7 @@
 #import "AppListAppDelegate.h"
 
 #import "ApplicationEntry.h"
+#import "ApplicationCell.h"
 
 @implementation AppListAppDelegate
 
@@ -54,6 +55,8 @@
 	
 	[tableView_ registerForDraggedTypes:
 	 [NSArray arrayWithObjects:NSFilenamesPboardType, nil]];
+	
+	[tableColumn_ setDataCell:[[[ApplicationCell alloc] init] autorelease]];
 }
 
 #pragma mark -
@@ -92,9 +95,7 @@
 	NSArray*filenames = [pboard propertyListForType:NSFilenamesPboardType];
 
 	for (NSString* filename in filenames) {
-		ApplicationEntry* entry = [[[ApplicationEntry alloc] init] autorelease];
-		entry.path = filename;
-//		entry.name = [filename lastPathComponent];
+		ApplicationEntry* entry = [[[ApplicationEntry alloc] initWithPath:filename] autorelease];
 		[arrayController_ insertObject:entry atArrangedObjectIndex:row];
 	}
 

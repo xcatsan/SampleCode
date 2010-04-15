@@ -13,6 +13,7 @@
 	
 	IBOutlet NSTableView* tableView_;
 	IBOutlet NSArrayController* arrayController_;
+	IBOutlet NSTableColumn* tableColumn_;
 	
 	NSMutableArray* appList_;
 }

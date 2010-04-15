@@ -18,4 +18,6 @@
 @property (copy) NSString* name;
 @property (copy) NSString* path;
 @property (retain) NSImage* icon;
+
+-(id)initWithPath:(NSString*)aPath;
 @end
