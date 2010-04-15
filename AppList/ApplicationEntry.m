@@ -15,7 +15,7 @@
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
--(id)initWithPath:(NSString*)aPath;
+-(id)initWithPath:(NSString*)aPath
 {
 	self = [super init];
 	if (self != nil) {
