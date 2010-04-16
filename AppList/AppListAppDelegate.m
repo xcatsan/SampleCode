@@ -10,6 +10,7 @@
 
 #import "ApplicationEntry.h"
 #import "ApplicationCell.h"
+#define AppListTableViewDataType @"AppListTableViewDataType"
 
 @implementation AppListAppDelegate
 
@@ -54,7 +55,8 @@
 	// Insert code here to initialize your application 
 	
 	[tableView_ registerForDraggedTypes:
-	 [NSArray arrayWithObjects:NSFilenamesPboardType, nil]];
+	 [NSArray arrayWithObjects:
+	  NSFilenamesPboardType, AppListTableViewDataType, nil]];
 	
 	[tableColumn_ setDataCell:[[[ApplicationCell alloc] init] autorelease]];
 }
@@ -83,22 +85,47 @@
 
 #pragma mark -
 #pragma mark NSTableViewDataSource Protocol
-- (NSDragOperation)tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op
+- (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard
 {
-    return NSDragOperationEvery;
+	NSLog(@"drag starts");
+    // Copy the row numbers to the pasteboard.
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
+    [pboard declareTypes:[NSArray arrayWithObject:AppListTableViewDataType] owner:self];
+    [pboard setData:data forType:AppListTableViewDataType];
+    return YES;
+}
+
+- (NSDragOperation)tableView:(NSTableView *)aTableView validateDrop:(id < NSDraggingInfo >)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation
+{
+	[aTableView setDropRow:row dropOperation:NSTableViewDropAbove];
+	
+	if ([info draggingSource] == tableView_) {
+		return NSDragOperationMove;
+	} 
+	return NSDragOperationEvery;
 }
 
 - (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
 			  row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
 {
-    NSPasteboard* pboard = [info draggingPasteboard];
-	NSArray*filenames = [pboard propertyListForType:NSFilenamesPboardType];
+    NSPasteboard* pboard = [info draggingPasteboard];	
+	NSArray* pboardTypes = [pboard types];
 
-	for (NSString* filename in filenames) {
-		ApplicationEntry* entry = [[[ApplicationEntry alloc] initWithPath:filename] autorelease];
-		[arrayController_ insertObject:entry atArrangedObjectIndex:row];
+	if ([pboardTypes containsObject:AppListTableViewDataType]) {
+		NSData* data = [pboard dataForType:AppListTableViewDataType];
+		NSIndexSet *rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+		NSLog(@"AppListTableViewDataType");
+		return NO;
+	} else if ([pboardTypes containsObject:NSFilenamesPboardType]) {
+		NSArray*filenames = [pboard propertyListForType:NSFilenamesPboardType];
+
+		for (NSString* filename in filenames) {
+			ApplicationEntry* entry = [[[ApplicationEntry alloc] initWithPath:filename] autorelease];
+			[arrayController_ insertObject:entry atArrangedObjectIndex:row];
+		}
+		return YES;
+	} else {
+		return NO;
 	}
-
-	return YES;
 }
 @end
