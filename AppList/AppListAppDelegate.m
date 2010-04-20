@@ -65,19 +65,51 @@
 #pragma mark Accssors
 - (IBAction)addApplication:(id)sender
 {
-	NSLog(@"-");
 	NSString* path = @"/Applications";
 	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 	[openPanel setCanChooseFiles:YES];
 	[openPanel setCanChooseDirectories:NO];
-	[openPanel setCanCreateDirectories:YES];
-	[openPanel setAllowsMultipleSelection:NO];
+	[openPanel setCanCreateDirectories:NO];
+	[openPanel setAllowsMultipleSelection:YES];
 	[openPanel setDirectory:path];
+
+	int result = [openPanel runModalForDirectory:path
+											file:nil
+										   types:nil];
 	
-	int result = [openPanel runModal];
+	if (result == NSOKButton) {
+		for (NSString* filename in [openPanel filenames]) {
+			ApplicationEntry* entry = [[[ApplicationEntry alloc] initWithPath:filename] autorelease];
+			
+			[appList_ addObject:entry];
+		}
+		[arrayController_ rearrangeObjects];
+	}
 	
-	NSLog(@"result=%d", result);
+	/*
+	[openPanel beginSheetForDirectory:path
+								 file:nil
+								types:nil
+					   modalForWindow:window
+						modalDelegate:self
+					   didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)
+						  contextInfo:nil];
+	
+	*/
 }
+/*
+- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo
+{
+	if (returnCode == NSOKButton) {
+		for (NSString* filename in [panel filenames]) {
+			ApplicationEntry* entry = [[[ApplicationEntry alloc] initWithPath:filename] autorelease];
+			
+			[appList_ addObject:entry];
+		}
+		[arrayController_ rearrangeObjects];
+	}
+}
+*/
 
 - (IBAction)removeApplication:(id)sender
 {
