@@ -112,17 +112,38 @@
 	NSArray* pboardTypes = [pboard types];
 
 	if ([pboardTypes containsObject:AppListTableViewDataType]) {
+
 		NSData* data = [pboard dataForType:AppListTableViewDataType];
+		
 		NSIndexSet *rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-		NSLog(@"AppListTableViewDataType");
-		return NO;
+
+		NSArray* srcArray = [appList_ objectsAtIndexes:rowIndexes];
+		NSUInteger srcCount = [srcArray count];
+
+		if ([rowIndexes firstIndex] < row) {
+			row = row - srcCount;
+		}
+		NSIndexSet* newIndexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(row, srcCount)];
+
+		[appList_ removeObjectsAtIndexes:rowIndexes];
+		[appList_ insertObjects:srcArray atIndexes:newIndexes];
+		[arrayController_ rearrangeObjects];
+
+		
+//		[arrayController_ removeObjectsAtArrangedObjectIndexes:rowIndexes];
+//		[arrayController_ insertObjects:srcArray atArrangedObjectIndexes:newIndexes];
+		return YES;
+
 	} else if ([pboardTypes containsObject:NSFilenamesPboardType]) {
 		NSArray*filenames = [pboard propertyListForType:NSFilenamesPboardType];
 
 		for (NSString* filename in filenames) {
 			ApplicationEntry* entry = [[[ApplicationEntry alloc] initWithPath:filename] autorelease];
-			[arrayController_ insertObject:entry atArrangedObjectIndex:row];
+
+			[appList_ insertObject:entry atIndex:row];
+//			[arrayController_ insertObject:entry atArrangedObjectIndex:row];
 		}
+		[arrayController_ rearrangeObjects];
 		return YES;
 	} else {
 		return NO;
