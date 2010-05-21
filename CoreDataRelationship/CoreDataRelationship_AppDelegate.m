@@ -382,12 +382,70 @@
 	
 }
 
+-(void)deleteFirstTag
+{
+	NSManagedObjectContext* moc = [self managedObjectContext];
+	
+	// (1) fetch from BlogEntry
+	NSLog(@"----- executeFetchRequest ------------------------------------------");
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
+	[request setEntity:[NSEntityDescription entityForName:@"Tag"
+								   inManagedObjectContext:managedObjectContext]];
+	
+	NSError* error = nil;
+	NSArray* tags = [moc executeFetchRequest:request error:&error];
+	
+	[request release];
+	
+	Tag* tag1 = [tags objectAtIndex:0];
+	NSLog(@"----- delete an tag ------------------------------------------");
+	[moc deleteObject:tag1];
+	
+	[moc save:&error];
+	if (error) {
+		NSLog(@"DELETE ERROR: %@", error);
+	} else {
+		NSLog(@"DELETED: Tag");
+	}	
+	
+}
+
+-(void)deleteFirstComment
+{
+	NSManagedObjectContext* moc = [self managedObjectContext];
+	
+	// (1) fetch from BlogComment
+	NSLog(@"----- executeFetchRequest ------------------------------------------");
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
+	[request setEntity:[NSEntityDescription entityForName:@"BlogComment"
+								   inManagedObjectContext:managedObjectContext]];
+	
+	NSError* error = nil;
+	NSArray* comments = [moc executeFetchRequest:request error:&error];
+	
+	[request release];
+	
+	BlogComment* comment1 = [comments objectAtIndex:0];
+	NSLog(@"----- delete an tag ------------------------------------------");
+	[moc deleteObject:comment1];
+	
+	[moc save:&error];
+	if (error) {
+		NSLog(@"DELETE ERROR: %@", error);
+	} else {
+		NSLog(@"DELETED: Tag");
+	}	
+	
+}
+
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	[self addTestData];	
 //	[self fetchDataByTag];
 	[self addComment];
-	[self deleteFirstEntry];
+//	[self deleteFirstEntry];
+	[self deleteFirstTag];
+//	[self deleteFirstComment];
 	[self fetchData];
 }
 
