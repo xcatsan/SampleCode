@@ -211,6 +211,7 @@
 	}
 
 	NSManagedObjectContext* moc = [self managedObjectContext];
+	NSError* error = nil;
 
 	Tag* tag1 = [NSEntityDescription insertNewObjectForEntityForName:@"Tag"
 											  inManagedObjectContext:moc];
@@ -223,12 +224,21 @@
 	Tag* tag3 = [NSEntityDescription insertNewObjectForEntityForName:@"Tag"
 											  inManagedObjectContext:moc];
 	tag3.name = @"iPad";
+
+	[moc save:&error];
+	if (error) {
+		NSLog(@"INSERT ERROR: %@", error);
+	} else {
+		NSLog(@"INSERTED: Tag");
+	}	
+
 	
 	BlogEntry* blog1 = [NSEntityDescription insertNewObjectForEntityForName:@"BlogEntry"
 													 inManagedObjectContext:moc];
 	blog1.title = @"CoreData のリレーションしっぷについて";
 	blog1.content = @"かくかくしかじか";
 	blog1.created = [NSDate date];
+//	[blog1 addTags:[NSSet setWithObjects:tag1, tag2, tag3, nil]];
 	blog1.tags = [NSSet setWithObjects:tag1, tag2, tag3, nil];
 
 	BlogEntry* blog2 = [NSEntityDescription insertNewObjectForEntityForName:@"BlogEntry"
@@ -237,14 +247,13 @@
 	blog2.content = @"かくかくしかじか";
 	blog2.created = [NSDate date];
 	blog2.tags = [NSSet setWithObjects:tag3, nil];
+//	[blog2 addTags:[NSSet setWithObjects:tag3, nil]];
 
-	NSError* error = nil;
 	[moc save:&error];
-	
 	if (error) {
 		NSLog(@"INSERT ERROR: %@", error);
 	} else {
-		NSLog(@"INSERTED");
+		NSLog(@"INSERTED: BlogEntry");
 	}	
 }
 
@@ -262,6 +271,7 @@
 	
 	NSLog(@"----- listup tag ---------------------------------------------------");
 	for (BlogEntry* entry in list) {
+		NSLog(@"title=%@", entry.title);
 		for (Tag* tag in entry.tags) {
 			NSLog(@"*tag*: %@", tag.name);
 		}
@@ -271,9 +281,33 @@
 	
 }
 
+- (void)fetchDataByTag
+{
+	NSManagedObjectContext* moc = [self managedObjectContext];
+	
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
+	[request setEntity:[NSEntityDescription entityForName:@"Tag"
+								   inManagedObjectContext:managedObjectContext]];
+	
+	NSError* error = nil;
+	NSLog(@"----- executeFetchRequest ------------------------------------------");
+	NSArray* tags = [moc executeFetchRequest:request error:&error];
+	
+	NSLog(@"----- listup entry ---------------------------------------------------");
+	for (Tag* tag in tags) {
+		NSLog(@"tag name=%@", tag.name);
+		for (BlogEntry* entry in tag.entries) {
+			NSLog(@"*entry*: %@", entry.title);
+		}
+	}
+	
+	[request release];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	[self addTestData];	
-	[self fetchData];
+//	[self fetchData];
+	[self fetchDataByTag];
 }
 
 
