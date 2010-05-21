@@ -8,6 +8,7 @@
 
 #import "CoreDataRelationship_AppDelegate.h"
 #import "BlogEntry.h"
+#import "BlogComment.h"
 #import "Tag.h"
 
 @implementation CoreDataRelationship_AppDelegate
@@ -269,11 +270,14 @@
 	NSLog(@"----- executeFetchRequest ------------------------------------------");
 	NSArray* list = [moc executeFetchRequest:request error:&error];
 	
-	NSLog(@"----- listup tag ---------------------------------------------------");
+	NSLog(@"----- listup entries ---------------------------------------------------");
 	for (BlogEntry* entry in list) {
 		NSLog(@"title=%@", entry.title);
 		for (Tag* tag in entry.tags) {
 			NSLog(@"*tag*: %@", tag.name);
+		}
+		for (BlogComment* comment in entry.comments) {
+			NSLog(@"*comment*: %@",comment.comment);
 		}
 	}
 
@@ -304,10 +308,87 @@
 	[request release];
 }
 
+-(void)addComment
+{
+	NSManagedObjectContext* moc = [self managedObjectContext];
+	
+	// (1) fetch from BlogEntry
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
+	[request setEntity:[NSEntityDescription entityForName:@"BlogEntry"
+								   inManagedObjectContext:managedObjectContext]];
+
+	NSError* error = nil;
+	NSArray* entries = [moc executeFetchRequest:request error:&error];
+
+	[request release];
+
+	// (2) add comments	
+	BlogComment* comment1 = [NSEntityDescription insertNewObjectForEntityForName:@"BlogComment"
+													 inManagedObjectContext:moc];
+	comment1.comment = @"RDBとはモデリング手法が若干異なる。";
+	comment1.created = [NSDate date];
+
+	BlogComment* comment2 = [NSEntityDescription insertNewObjectForEntityForName:@"BlogComment"
+														  inManagedObjectContext:moc];
+	comment2.comment = @"徐々にイメージがわいてきた";
+	comment2.created = [NSDate date];
+
+	BlogEntry* entry1 = [entries objectAtIndex:0];
+	[entry1 addCommentsObject:comment1];
+	[entry1 addCommentsObject:comment2];
+
+
+	BlogComment* comment3 = [NSEntityDescription insertNewObjectForEntityForName:@"BlogComment"
+														  inManagedObjectContext:moc];
+	comment3.comment = @"楽しみ";
+	comment3.created = [NSDate date];
+	BlogEntry* entry2 = [entries objectAtIndex:1];
+	[entry2 addCommentsObject:comment3];
+
+	
+	[moc save:&error];
+	if (error) {
+		NSLog(@"ADD ERROR: %@", error);
+	} else {
+		NSLog(@"ADDED: BlogEntry");
+	}	
+}
+
+-(void)deleteFirstEntry
+{
+	NSManagedObjectContext* moc = [self managedObjectContext];
+	
+	// (1) fetch from BlogEntry
+	NSLog(@"----- executeFetchRequest ------------------------------------------");
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
+	[request setEntity:[NSEntityDescription entityForName:@"BlogEntry"
+								   inManagedObjectContext:managedObjectContext]];
+	
+	NSError* error = nil;
+	NSArray* entries = [moc executeFetchRequest:request error:&error];
+	
+	[request release];
+	
+	BlogEntry* entry1 = [entries objectAtIndex:0];
+	NSLog(@"----- delete an entry ------------------------------------------");
+	[moc deleteObject:entry1];
+	
+	[moc save:&error];
+	if (error) {
+		NSLog(@"DELETE ERROR: %@", error);
+	} else {
+		NSLog(@"DELETED: BlogEntry");
+	}	
+	
+}
+
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	[self addTestData];	
-//	[self fetchData];
-	[self fetchDataByTag];
+//	[self fetchDataByTag];
+	[self addComment];
+	[self deleteFirstEntry];
+	[self fetchData];
 }
 
 
