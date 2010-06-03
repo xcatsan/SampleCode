@@ -442,10 +442,11 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	[self addTestData];	
 //	[self fetchDataByTag];
-	[self addComment];
+//	[self addComment];
 //	[self deleteFirstEntry];
-	[self deleteFirstTag];
+//	[self deleteFirstTag];
 //	[self deleteFirstComment];
+	[self fetchDataFirstBlog];
 	[self fetchData];
 }
 

@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 
 @class Tag;
+@class BlogComment;
 
 @interface BlogEntry :  NSManagedObject  
 {
@@ -28,8 +29,8 @@
 - (void)addTags:(NSSet *)value;
 - (void)removeTags:(NSSet *)value;
 
-- (void)addCommentsObject:(NSManagedObject *)value;
-- (void)removeCommentsObject:(NSManagedObject *)value;
+- (void)addCommentsObject:(BlogComment *)value;
+- (void)removeCommentsObject:(BlogComment *)value;
 - (void)addComments:(NSSet *)value;
 - (void)removeComments:(NSSet *)value;
 

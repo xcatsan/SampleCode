@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2F7446990DB6B7EA00F9684A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7446970DB6B7EA00F9684A /* MainMenu.xib */; };
-		4C9373DE11A60933009D21D7 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9373DD11A60933009D21D7 /* Tag.m */; };
-		4C93740B11A6473D009D21D7 /* BlogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C93740811A6473D009D21D7 /* BlogEntry.m */; };
-		4C93740C11A6473D009D21D7 /* BlogComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C93740A11A6473D009D21D7 /* BlogComment.m */; };
-		770B37ED0679A11B001EADE2 /* CoreDataRelationship_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* CoreDataRelationship_DataModel.xcdatamodel */; };
+		4C93747B11A6793C009D21D7 /* BlogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C93747611A6793C009D21D7 /* BlogEntry.m */; };
+		4C93747C11A6793C009D21D7 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C93747811A6793C009D21D7 /* Tag.m */; };
+		4C93747D11A6793C009D21D7 /* BlogComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C93747A11A6793C009D21D7 /* BlogComment.m */; };
+		4C93749F11AB8558009D21D7 /* CoreDataRelationship_DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C93749E11AB8558009D21D7 /* CoreDataRelationship_DataModel.xcdatamodeld */; };
 		77C8280E06725ACE000B614F /* CoreDataRelationship_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* CoreDataRelationship_AppDelegate.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -26,12 +26,13 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2F7446980DB6B7EA00F9684A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* CoreDataRelationship_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataRelationship_Prefix.pch; sourceTree = "<group>"; };
-		4C9373DC11A60933009D21D7 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
-		4C9373DD11A60933009D21D7 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		4C93740711A6473D009D21D7 /* BlogEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogEntry.h; sourceTree = "<group>"; };
-		4C93740811A6473D009D21D7 /* BlogEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogEntry.m; sourceTree = "<group>"; };
-		4C93740911A6473D009D21D7 /* BlogComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogComment.h; sourceTree = "<group>"; };
-		4C93740A11A6473D009D21D7 /* BlogComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogComment.m; sourceTree = "<group>"; };
+		4C93747511A6793C009D21D7 /* BlogEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogEntry.h; sourceTree = "<group>"; };
+		4C93747611A6793C009D21D7 /* BlogEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogEntry.m; sourceTree = "<group>"; };
+		4C93747711A6793C009D21D7 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		4C93747811A6793C009D21D7 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		4C93747911A6793C009D21D7 /* BlogComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogComment.h; sourceTree = "<group>"; };
+		4C93747A11A6793C009D21D7 /* BlogComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogComment.m; sourceTree = "<group>"; };
+		4C9374A011AB8559009D21D7 /* CoreDataRelationship_DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataRelationship_DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		770B37EC0679A11B001EADE2 /* CoreDataRelationship_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataRelationship_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		77C8280B06725ACE000B614F /* CoreDataRelationship_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataRelationship_AppDelegate.h; sourceTree = "<group>"; };
@@ -55,12 +56,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4C93740711A6473D009D21D7 /* BlogEntry.h */,
-				4C93740811A6473D009D21D7 /* BlogEntry.m */,
-				4C93740911A6473D009D21D7 /* BlogComment.h */,
-				4C93740A11A6473D009D21D7 /* BlogComment.m */,
-				4C9373DC11A60933009D21D7 /* Tag.h */,
-				4C9373DD11A60933009D21D7 /* Tag.m */,
+				4C93747511A6793C009D21D7 /* BlogEntry.h */,
+				4C93747611A6793C009D21D7 /* BlogEntry.m */,
+				4C93747711A6793C009D21D7 /* Tag.h */,
+				4C93747811A6793C009D21D7 /* Tag.m */,
+				4C93747911A6793C009D21D7 /* BlogComment.h */,
+				4C93747A11A6793C009D21D7 /* BlogComment.m */,
 				77C8280B06725ACE000B614F /* CoreDataRelationship_AppDelegate.h */,
 				77C8280C06725ACE000B614F /* CoreDataRelationship_AppDelegate.m */,
 			);
@@ -137,7 +138,7 @@
 		7756732906782D8800D1FEB8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				770B37EC0679A11B001EADE2 /* CoreDataRelationship_DataModel.xcdatamodel */,
+				4C93749E11AB8558009D21D7 /* CoreDataRelationship_DataModel.xcdatamodeld */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -199,10 +200,10 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				77C8280E06725ACE000B614F /* CoreDataRelationship_AppDelegate.m in Sources */,
-				770B37ED0679A11B001EADE2 /* CoreDataRelationship_DataModel.xcdatamodel in Sources */,
-				4C9373DE11A60933009D21D7 /* Tag.m in Sources */,
-				4C93740B11A6473D009D21D7 /* BlogEntry.m in Sources */,
-				4C93740C11A6473D009D21D7 /* BlogComment.m in Sources */,
+				4C93749F11AB8558009D21D7 /* CoreDataRelationship_DataModel.xcdatamodeld in Sources */,
+				4C93747B11A6793C009D21D7 /* BlogEntry.m in Sources */,
+				4C93747C11A6793C009D21D7 /* Tag.m in Sources */,
+				4C93747D11A6793C009D21D7 /* BlogComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +309,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4C93749E11AB8558009D21D7 /* CoreDataRelationship_DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				770B37EC0679A11B001EADE2 /* CoreDataRelationship_DataModel.xcdatamodel */,
+				4C9374A011AB8559009D21D7 /* CoreDataRelationship_DataModel 2.xcdatamodel */,
+			);
+			currentVersion = 770B37EC0679A11B001EADE2 /* CoreDataRelationship_DataModel.xcdatamodel */;
+			path = CoreDataRelationship_DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }

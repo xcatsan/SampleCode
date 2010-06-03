@@ -9,6 +9,7 @@
 #import "BlogEntry.h"
 
 #import "Tag.h"
+#import "BlogComment.h"
 
 @implementation BlogEntry 
 
