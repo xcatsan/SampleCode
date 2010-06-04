@@ -7,6 +7,7 @@
 //
 
 #import "CoreDataObjectID_AppDelegate.h"
+#import "Book.h"
 
 @implementation CoreDataObjectID_AppDelegate
 
@@ -15,6 +16,15 @@
 - (void)awakeFromNib
 {
 	[arrayController setManagedObjectContext:self.managedObjectContext];
+	
+	NSString* uriString = [[NSUserDefaults standardUserDefaults] objectForKey:@"PREVIOUS_URI"];
+	
+	if (uriString) {
+		NSURL* uri = [NSURL URLWithString:uriString];
+		NSManagedObjectID* objectID = [self.persistentStoreCoordinator managedObjectIDForURIRepresentation:uri];
+		Book* book = (Book*)[self.managedObjectContext objectWithID:objectID];
+		NSLog(@"book: %@, %@ (%@)", book.Title, book.Author, uriString);
+	}
 }
 
 /**
@@ -160,6 +170,17 @@
  
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
 
+	//
+	NSArray* selectedObjects = [arrayController selectedObjects];
+	if ([selectedObjects count] > 0) {
+		Book* book = [selectedObjects objectAtIndex:0];
+		NSManagedObjectID* moid = [book objectID];
+		NSString* uriString = [[moid URIRepresentation] description];
+		[[NSUserDefaults standardUserDefaults] setValue:uriString forKey:@"PREVIOUS_URI"];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+	}
+	
+	//
     if (!managedObjectContext) return NSTerminateNow;
 
     if (![managedObjectContext commitEditing]) {
