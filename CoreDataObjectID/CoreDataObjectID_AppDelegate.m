@@ -13,19 +13,31 @@
 
 @synthesize window;
 
-- (void)awakeFromNib
+- (IBAction)getObject:(id)sender
 {
-	[arrayController setManagedObjectContext:self.managedObjectContext];
-	
 	NSString* uriString = [[NSUserDefaults standardUserDefaults] objectForKey:@"PREVIOUS_URI"];
+//	uriString = [uriString stringByAppendingString:@"0"];
+	NSError* error = nil;
 	
 	if (uriString) {
 		NSURL* uri = [NSURL URLWithString:uriString];
 		NSManagedObjectID* objectID = [self.persistentStoreCoordinator managedObjectIDForURIRepresentation:uri];
-		Book* book = (Book*)[self.managedObjectContext objectWithID:objectID];
-		NSLog(@"book: %@, %@ (%@)", book.Title, book.Author, uriString);
+		//		Book* book = (Book*)[self.managedObjectContext objectWithID:objectID];
+				Book* book = (Book*)[self.managedObjectContext objectRegisteredForID:objectID];
+//		Book* book = (Book*)[self.managedObjectContext existingObjectWithID:objectID error:&error];
+		NSLog(@"PEVIOUS_URI: %@", uriString);
+		NSLog(@"book isFault: %d", [book isFault]);
+		NSLog(@"book: %@, %@ (%@)", book.Title, book.Author, [book objectID]);
+		NSLog(@"%@", error);
 	}
 }
+
+- (void)awakeFromNib
+{
+	[arrayController setManagedObjectContext:self.managedObjectContext];
+	[self getObject:nil];
+}
+
 
 /**
     Returns the support directory for the application, used to store the Core Data
