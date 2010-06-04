@@ -18,13 +18,6 @@
 {
 	NSManagedObjectID* moid = [self objectID];
 	return [[moid URIRepresentation] description];
-
-	if ([moid isTemporaryID]) {
-		NSLog(@"%@", [moid URIRepresentation]);
-		return @"(temporary)";
-	} else {
-		return [[moid URIRepresentation] description];
-	}
 }
 -(void)setObjectID_URI:(NSString*)dummy
 {

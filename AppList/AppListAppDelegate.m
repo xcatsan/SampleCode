@@ -11,7 +11,7 @@
 #import "ApplicationEntry.h"
 #import "ApplicationCell.h"
 #define AppListTableViewDataType @"AppListTableViewDataType"
-
+#define UDKEY_HELPER_APPLICATION_LIST	@"HelperApplicationList"
 @implementation AppListAppDelegate
 
 @synthesize window;
@@ -48,12 +48,36 @@
 	[super dealloc];
 }
 
+#pragma mark -
+#pragma mark Utilities
+- (void)rearrangeList
+{
+	[arrayController_ rearrangeObjects];
+	
+	NSUserDefaults* userDefaults =
+	[[NSUserDefaultsController sharedUserDefaultsController] values];
+	
+	NSMutableArray* pathList = [NSMutableArray array];
+	for (ApplicationEntry* entry in appList_) {
+		[pathList addObject:entry.path];
+	}
+	[userDefaults setValue:pathList forKey:UDKEY_HELPER_APPLICATION_LIST];
+}
+
 
 #pragma mark -
 #pragma mark Application Delegate
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application 
-	
+
+	NSUserDefaults* userDefaults =
+	[[NSUserDefaultsController sharedUserDefaultsController] values];
+	NSArray* pathList = [userDefaults valueForKey:UDKEY_HELPER_APPLICATION_LIST];
+	for (NSString* path in pathList) {
+		[appList_ addObject:[[[ApplicationEntry alloc] initWithPath:path] autorelease]];
+	}
+	[arrayController_ rearrangeObjects];
+
 	[tableView_ registerForDraggedTypes:
 	 [NSArray arrayWithObjects:
 	  NSFilenamesPboardType, AppListTableViewDataType, nil]];
@@ -83,7 +107,7 @@
 			
 			[appList_ addObject:entry];
 		}
-		[arrayController_ rearrangeObjects];
+		[self rearrangeList];
 	}
 	
 	/*
@@ -110,10 +134,6 @@
 	}
 }
 */
-
-- (IBAction)removeApplication:(id)sender
-{
-}
 
 #pragma mark -
 #pragma mark NSTableViewDataSource Protocol
@@ -159,7 +179,7 @@
 
 		[appList_ removeObjectsAtIndexes:rowIndexes];
 		[appList_ insertObjects:srcArray atIndexes:newIndexes];
-		[arrayController_ rearrangeObjects];
+		[self rearrangeList];
 
 		
 //		[arrayController_ removeObjectsAtArrangedObjectIndexes:rowIndexes];
@@ -175,7 +195,7 @@
 			[appList_ insertObject:entry atIndex:row];
 //			[arrayController_ insertObject:entry atArrangedObjectIndex:row];
 		}
-		[arrayController_ rearrangeObjects];
+		[self rearrangeList];
 		return YES;
 	} else {
 		return NO;

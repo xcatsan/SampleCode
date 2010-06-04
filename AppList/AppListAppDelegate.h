@@ -22,6 +22,6 @@
 @property (retain) NSMutableArray* appList;
 
 - (IBAction)addApplication:(id)sender;
-- (IBAction)removeApplication:(id)sender;
+//- (IBAction)removeApplication:(id)sender;
 
 @end

@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		2F7446990DB6B7EA00F9684A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7446970DB6B7EA00F9684A /* MainMenu.xib */; };
 		4CA50C0311B955EB00D02D28 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50C0211B955EB00D02D28 /* Book.m */; };
-		770B37ED0679A11B001EADE2 /* CoreDataObjectID_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* CoreDataObjectID_DataModel.xcdatamodel */; };
+		4CA50C2311B95D6100D02D28 /* CoreDataObjectID_DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50C2211B95D6100D02D28 /* CoreDataObjectID_DataModel.xcdatamodeld */; };
+		4CA50C6811B95F4700D02D28 /* map1to2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50C6711B95F4700D02D28 /* map1to2.xcmappingmodel */; };
 		77C8280E06725ACE000B614F /* CoreDataObjectID_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* CoreDataObjectID_AppDelegate.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -26,6 +27,8 @@
 		32CA4F630368D1EE00C91783 /* CoreDataObjectID_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataObjectID_Prefix.pch; sourceTree = "<group>"; };
 		4CA50C0111B955EB00D02D28 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		4CA50C0211B955EB00D02D28 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		4CA50C2411B95D6100D02D28 /* CoreDataObjectID_DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataObjectID_DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		4CA50C6711B95F4700D02D28 /* map1to2.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = map1to2.xcmappingmodel; sourceTree = "<group>"; };
 		770B37EC0679A11B001EADE2 /* CoreDataObjectID_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataObjectID_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		77C8280B06725ACE000B614F /* CoreDataObjectID_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataObjectID_AppDelegate.h; sourceTree = "<group>"; };
@@ -127,7 +130,7 @@
 		7756732906782D8800D1FEB8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				770B37EC0679A11B001EADE2 /* CoreDataObjectID_DataModel.xcdatamodel */,
+				4CA50C2211B95D6100D02D28 /* CoreDataObjectID_DataModel.xcdatamodeld */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -189,8 +192,9 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				77C8280E06725ACE000B614F /* CoreDataObjectID_AppDelegate.m in Sources */,
-				770B37ED0679A11B001EADE2 /* CoreDataObjectID_DataModel.xcdatamodel in Sources */,
+				4CA50C2311B95D6100D02D28 /* CoreDataObjectID_DataModel.xcdatamodeld in Sources */,
 				4CA50C0311B955EB00D02D28 /* Book.m in Sources */,
+				4CA50C6811B95F4700D02D28 /* map1to2.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +301,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4CA50C2211B95D6100D02D28 /* CoreDataObjectID_DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				770B37EC0679A11B001EADE2 /* CoreDataObjectID_DataModel.xcdatamodel */,
+				4CA50C2411B95D6100D02D28 /* CoreDataObjectID_DataModel 2.xcdatamodel */,
+				4CA50C6711B95F4700D02D28 /* map1to2.xcmappingmodel */,
+			);
+			currentVersion = 4CA50C2411B95D6100D02D28 /* CoreDataObjectID_DataModel 2.xcdatamodel */;
+			path = CoreDataObjectID_DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }
