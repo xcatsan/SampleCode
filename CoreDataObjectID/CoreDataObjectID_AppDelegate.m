@@ -18,17 +18,21 @@
 	NSString* uriString = [[NSUserDefaults standardUserDefaults] objectForKey:@"PREVIOUS_URI"];
 //	uriString = [uriString stringByAppendingString:@"0"];
 	NSError* error = nil;
-	
+	uriString = @"x-coredata://999CA547-4D80-417A-8810-70847FB0375D/Book/p1";
 	if (uriString) {
 		NSURL* uri = [NSURL URLWithString:uriString];
 		NSManagedObjectID* objectID = [self.persistentStoreCoordinator managedObjectIDForURIRepresentation:uri];
-		//		Book* book = (Book*)[self.managedObjectContext objectWithID:objectID];
-				Book* book = (Book*)[self.managedObjectContext objectRegisteredForID:objectID];
-//		Book* book = (Book*)[self.managedObjectContext existingObjectWithID:objectID error:&error];
-		NSLog(@"PEVIOUS_URI: %@", uriString);
-		NSLog(@"book isFault: %d", [book isFault]);
-		NSLog(@"book: %@, %@ (%@)", book.Title, book.Author, [book objectID]);
-		NSLog(@"%@", error);
+		if (objectID) {
+			// Book* book = (Book*)[self.managedObjectContext objectWithID:objectID];
+			// Book* book = (Book*)[self.managedObjectContext objectRegisteredForID:objectID];
+			Book* book = (Book*)[self.managedObjectContext existingObjectWithID:objectID error:&error];
+			NSLog(@"PEVIOUS_URI: %@", uriString);
+			NSLog(@"book isFault: %d", [book isFault]);
+			NSLog(@"book: %@, %@ (%@)", book.Title, book.Author, [book objectID]);
+			NSLog(@"%@", error);
+		} else {
+			NSLog(@"objectID is nil");
+		}
 	}
 }
 

@@ -28,5 +28,9 @@
 - (IBAction)saveAction:sender;
 - (IBAction)rollbackAction:sender;
 
+- (IBAction)undoAction:sender;
+- (IBAction)redoAction:sender;
+- (IBAction)resetAction:sender;
+- (IBAction)reloadAction:sender;
 
 @end

@@ -148,6 +148,22 @@
 {
 	[self.managedObjectContext rollback];
 }
+- (IBAction)undoAction:sender
+{
+	[self.managedObjectContext undo];
+}
+- (IBAction)redoAction:sender
+{
+	[self.managedObjectContext redo];
+}
+- (IBAction)resetAction:sender
+{
+	[self.managedObjectContext reset];
+}
+- (IBAction)reloadAction:sender
+{
+	[arrayController prepareContent];
+}
 
 /**
     Implementation of the applicationShouldTerminate: method, used here to
